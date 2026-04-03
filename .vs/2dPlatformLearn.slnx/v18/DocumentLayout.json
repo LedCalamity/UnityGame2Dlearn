@@ -1,0 +1,396 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\unity_project\\2dPlatformLearn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\skills\\skillmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\skills\\skillmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\effectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\effectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playerskill4dirfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playerskill4dirfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playercontroljump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playercontroljump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playercontrolfireaoe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playercontrolfireaoe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playercontrolfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playercontrolfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playercontroldash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playercontroldash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\playercontrolmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\playercontrolmove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\control\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\control\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\scenemanage\\scenemgr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scenemanage\\scenemgr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\audio\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audio\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\enemy\\enemyhp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyhp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\bullet\\bulletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bullet\\bulletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\bullet\\chaserbulletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bullet\\chaserbulletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\playernumber\\playermana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playernumber\\playermana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\player\\playernumber\\playerhp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playernumber\\playerhp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\bloodeffect01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bloodeffect01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\audio\\level0audio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audio\\level0audio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\events\\triggerarea\\triggerexithint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\triggerarea\\triggerexithint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\events\\triggerarea\\triggerl0tol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\triggerarea\\triggerl0tol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\events\\triggerarea\\triggergemhint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\triggerarea\\triggergemhint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\events\\triggerarea\\triggerdashhint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\triggerarea\\triggerdashhint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|d:\\unity_project\\2dplatformlearn\\assets\\scripts\\events\\triggerarea\\triggerredobjecthint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\triggerarea\\triggerredobjecthint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SkillManager.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Skills\\SkillManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Skills\\SkillManager.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Skills\\SkillManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Skills\\SkillManager.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwDIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T11:31:04.885Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EffectManager.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\EffectManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EffectManager.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\EffectManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EffectManager.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAApwBEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T11:51:35.246Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SceneMgr.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\SceneManage\\SceneMgr.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SceneManage\\SceneMgr.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\SceneManage\\SceneMgr.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SceneManage\\SceneMgr.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T13:03:09.347Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InputManager.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\InputManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\InputManager.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\InputManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\InputManager.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCIAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T10:20:54.222Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AudioManager.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Audio\\AudioManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Audio\\AudioManager.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Audio\\AudioManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Audio\\AudioManager.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwBwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T13:11:37.203Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerControlFireAOE.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlFireAOE.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerControlFireAOE.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlFireAOE.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerControlFireAOE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T13:43:13.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerControlJump.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlJump.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerControlJump.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlJump.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerControlJump.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T16:38:53.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerSkill4DirFire.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerSkill4DirFire.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerSkill4DirFire.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerSkill4DirFire.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerSkill4DirFire.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAwA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T13:44:52.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerControlFire.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlFire.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerControlFire.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlFire.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerControlFire.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T14:13:05.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerControlDash.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlDash.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerControlDash.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlDash.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerControlDash.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T15:55:58.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerControlMove.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlMove.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Control\\PlayerControlMove.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\Control\\PlayerControlMove.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Control\\PlayerControlMove.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-28T16:37:23.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EnemyHP.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Enemy\\EnemyHP.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyHP.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Enemy\\EnemyHP.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyHP.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T16:59:54.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BulletController.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Bullet\\BulletController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Bullet\\BulletController.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Bullet\\BulletController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Bullet\\BulletController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T12:29:26.746Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ChaserBulletController.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Bullet\\ChaserBulletController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Bullet\\ChaserBulletController.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Bullet\\ChaserBulletController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Bullet\\ChaserBulletController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T11:21:15.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PlayerMana.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\PlayerNumber\\PlayerMana.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerNumber\\PlayerMana.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\PlayerNumber\\PlayerMana.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerNumber\\PlayerMana.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T15:47:05.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Playerhp.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\PlayerNumber\\Playerhp.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerNumber\\Playerhp.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Player\\PlayerNumber\\Playerhp.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerNumber\\Playerhp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T13:50:09.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BloodEffect01.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\BloodEffect01.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BloodEffect01.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\BloodEffect01.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BloodEffect01.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T11:48:33.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Level0Audio.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Audio\\Level0Audio.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Audio\\Level0Audio.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Audio\\Level0Audio.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Audio\\Level0Audio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T14:13:31.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TriggerL0ToL1.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerL0ToL1.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TriggerArea\\TriggerL0ToL1.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerL0ToL1.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\TriggerArea\\TriggerL0ToL1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T13:36:17.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "TriggerExitHint.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerExitHint.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TriggerArea\\TriggerExitHint.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerExitHint.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\TriggerArea\\TriggerExitHint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T12:27:37.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "TriggerGemHint.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerGemHint.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TriggerArea\\TriggerGemHint.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerGemHint.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\TriggerArea\\TriggerGemHint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T14:38:42.254Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "TriggerRedObjectHint.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerRedObjectHint.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TriggerArea\\TriggerRedObjectHint.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerRedObjectHint.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\TriggerArea\\TriggerRedObjectHint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T13:50:21.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "TriggerDashHint.cs",
+              "DocumentMoniker": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerDashHint.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TriggerArea\\TriggerDashHint.cs",
+              "ToolTip": "D:\\unity_project\\2dPlatformLearn\\Assets\\Scripts\\Events\\TriggerArea\\TriggerDashHint.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\TriggerArea\\TriggerDashHint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T13:17:59.98Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
