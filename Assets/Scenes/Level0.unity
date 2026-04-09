@@ -3305,38 +3305,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1406171144095247963, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406171144095247963, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 56.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406171144095247963, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -39
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812152484856326271, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812152484856326271, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_Color.g
-      value: 0.34150195
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812152484856326271, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812152484856326271, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283295785991013593, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4456795721692893789, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3416,10 +3384,6 @@ PrefabInstance:
     - target: {fileID: 4456795721692893789, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5296448780775917698, guid: 1086a14743a2e8d40b7b9974e65b5059, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
