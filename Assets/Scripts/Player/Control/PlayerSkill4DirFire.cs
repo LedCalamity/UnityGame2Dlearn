@@ -14,6 +14,10 @@ public class PlayerSkill4DirFire : MonoBehaviour
         input_manager = GetComponent<InputManager>();
         input_manager.On4DirFire += Skill_4Dir_Fire;
     }
+    private void Start()
+    {
+        skill_cd = UIManager.Instance.cdimagecover;
+    }
     private void OnDisable()
     {
         input_manager.On4DirFire -= Skill_4Dir_Fire;

@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
             audio.volume = 0.3f;
             audios.Add(audio);
         }
+        //add new clip here
         audioClipDict.Add("Caliburne", general_music);
         audioClipDict.Add("Death_sef",death_sef);
         audioClipDict.Add("Fire_sef", fire_sef);

@@ -55,7 +55,6 @@ public class ChaserBulletController : MonoBehaviour
             if (collider.CompareTag("Enemies"))
             {
                 collider.GetComponent<EnemyHP>().DeductHealth(BulletData.Instance.getBulletData("ChaserBullet").damage);
-                collider.GetComponent<EnemyEffects>().BloodEffect();
             }
             Destroy(gameObject);
         }

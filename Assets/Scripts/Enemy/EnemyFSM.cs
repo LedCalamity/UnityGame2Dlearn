@@ -8,6 +8,7 @@ public class EnemyFSM : MonoBehaviour
     public States state;
     EnemyAnimManager enemyAnimManager;
     float idle_waiting_time = 2f, cur_waiting_time = 0f;
+    float sight_remain_time = 2f, cur_lostsight_time = 0f;
     public float[] patrol_X = { -13, -5 };
     int patrol_ct = 0;
     public GameObject player;
@@ -42,15 +43,26 @@ public class EnemyFSM : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position,
                     new Vector2(patrol_X[patrol_ct % 2], transform.position.y),
-                    patrol_speed * Time.deltaTime);
+                    patrol_speed * Time.deltaTime); //patrolling between fixed points
                 if (Mathf.Abs(transform.position.x - patrol_X[patrol_ct % 2]) <= 0.01f) patrol_ct++;
                 if (can_see_player) SwitchState(States.Chase);
                 break;
             }
             case States.Chase:
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chase_speed * Time.deltaTime);
-                if (!can_see_player) SwitchState(States.Idle);
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chase_speed * Time.deltaTime); //dash towards player
+                if (!can_see_player)
+                {
+                    cur_lostsight_time += Time.deltaTime;
+                }
+                else
+                {
+                    cur_lostsight_time = 0f;
+                }
+                if(cur_lostsight_time > sight_remain_time)
+                {
+                    SwitchState(States.Idle);
+                }
                 break;
             }
         }
@@ -72,5 +84,6 @@ public class EnemyFSM : MonoBehaviour
     {
         state = l_state;
         if (l_state == States.Idle) cur_waiting_time = 0f;
+        if (l_state == States.Chase) cur_lostsight_time = 0f;
     }
 }

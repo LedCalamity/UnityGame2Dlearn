@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//check mana-> effect->audio->logic
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance;
@@ -55,7 +56,7 @@ public class SkillManager : MonoBehaviour
                     hit.GetComponent<EnemyHP>().DeductHealth(1);
                 }
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f); //with interval 0.2s
         }
         
     }
