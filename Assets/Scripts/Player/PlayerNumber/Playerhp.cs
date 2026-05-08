@@ -6,9 +6,19 @@ public class Playerhp : MonoBehaviour
     public int max_player_hp = 10;
     int cur_player_hp = 0;
     public Image player_hp_bar;
+    public static Playerhp Instance;
+    void Awake()
+    {
+        if (!Instance)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
     void Start()
     {
-        cur_player_hp = max_player_hp;
+        ResetHP();
     }
     void Update()
     {
@@ -17,7 +27,7 @@ public class Playerhp : MonoBehaviour
     }
     void CheckPlayerDeath()
     {
-        if (cur_player_hp <= 0) Debug.Log("Death Scene needs to be added"); 
+        if (cur_player_hp <= 0) GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().PlayerDie();
     }
     void UpdateBar()
     {
@@ -27,5 +37,9 @@ public class Playerhp : MonoBehaviour
     public void PlayerTakeDamage(int dmg)
     {
         cur_player_hp -= dmg;
+    }
+    public void ResetHP()
+    {
+        cur_player_hp = max_player_hp;
     }
 }

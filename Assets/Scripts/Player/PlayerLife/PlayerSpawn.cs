@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    public string[] destroyScenes = {"MainMenu"};
+    public string[] destroyScenes = { "MainMenu", "DeathScene" };
     void Awake()
     {
         DontDestroyOnLoad(gameObject);

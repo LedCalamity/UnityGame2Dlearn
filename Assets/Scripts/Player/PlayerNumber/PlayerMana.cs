@@ -19,7 +19,7 @@ public class PlayerMana : MonoBehaviour
     }
     void Start()
     {
-        cur_mana = max_player_mana;
+        ResetMana();
     }
     void Update()
     {
@@ -55,5 +55,9 @@ public class PlayerMana : MonoBehaviour
             return false;
         }
         return true;
+    }
+    public void ResetMana()
+    {
+        cur_mana = max_player_mana;
     }
 }

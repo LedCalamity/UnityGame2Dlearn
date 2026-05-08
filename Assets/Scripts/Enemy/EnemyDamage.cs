@@ -7,7 +7,7 @@ public class EnemyDamage : MonoBehaviour
         if(collision.collider.CompareTag("Player"))
         {
             AudioManager.Instance.AudioPlay(3, "Hit_sef", false);
-            collision.collider.GetComponent<Playerhp>().PlayerTakeDamage(2);
+            Playerhp.Instance.PlayerTakeDamage(2);
         }
     }
 }
