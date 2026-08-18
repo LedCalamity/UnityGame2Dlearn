@@ -26,7 +26,7 @@ public class ChaserBulletController : MonoBehaviour
                 var diff = targetTransform.position - transform.position;
                 float nowZ = transform.rotation.eulerAngles.z;
                 float toZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(nowZ, toZ, 0.01f));
+                transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(nowZ, toZ, 0.1f));
             }
             //if not we try to find with raycast
             else

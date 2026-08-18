@@ -35,5 +35,6 @@ public class EnemyHP : MonoBehaviour
     {
         cur_hp -= hp;
         GetComponent<EnemyEffects>().BloodEffect();
+        GetComponent<EnemyFSM>().SwitchStateStr("Chase");
     }
 }

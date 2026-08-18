@@ -16,7 +16,7 @@ public class EnemyFSM : MonoBehaviour
     void Start()
     {
         state = States.Idle;
-        enemyAnimManager = GetComponent<EnemyAnimManager>();
+        enemyAnimManager = GetComponent<EnemyAnimManager>(); 
         rb = GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -85,5 +85,9 @@ public class EnemyFSM : MonoBehaviour
         state = l_state;
         if (l_state == States.Idle) cur_waiting_time = 0f;
         if (l_state == States.Chase) cur_lostsight_time = 0f;
+    }
+    public void SwitchStateStr(string l_state)
+    {
+        if (l_state == "Chase") SwitchState(States.Chase);
     }
 }
