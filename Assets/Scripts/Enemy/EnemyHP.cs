@@ -31,10 +31,15 @@ public class EnemyHP : MonoBehaviour
         float pct = (float)cur_hp / (float)max_hp;
         hp_bar.transform.localScale = new Vector3(pct, hp_bar.transform.localScale.y, 1);
     }
-    public void DeductHealth(int hp)
+    public void DeductHealth(int hp, bool generateBloodEffect = true)
     {
         cur_hp -= hp;
-        GetComponent<EnemyEffects>().BloodEffect();
+
+        if (generateBloodEffect)
+        {
+            GetComponent<EnemyEffects>().BloodEffect();
+        }
+
         GetComponent<EnemyFSM>().SwitchStateStr("Chase");
     }
 }

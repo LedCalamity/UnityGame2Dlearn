@@ -154,6 +154,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GroundPound"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7e5b388-3c7c-4cd7-a587-f10e9ecf1f01"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -277,6 +286,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""SkillFireAOE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba6eb58b-b278-473e-b547-1abdc6ce5699"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GroundPound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,6 +312,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_NormalPlayer_FireChaser = m_NormalPlayer.FindAction("FireChaser", throwIfNotFound: true);
         m_NormalPlayer_Skill4DirFire = m_NormalPlayer.FindAction("Skill4DirFire", throwIfNotFound: true);
         m_NormalPlayer_SkillFireAOE = m_NormalPlayer.FindAction("SkillFireAOE", throwIfNotFound: true);
+        m_NormalPlayer_GroundPound = m_NormalPlayer.FindAction("GroundPound", throwIfNotFound: true);
     }
 
     ~@PlayerActions()
@@ -379,6 +400,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_NormalPlayer_FireChaser;
     private readonly InputAction m_NormalPlayer_Skill4DirFire;
     private readonly InputAction m_NormalPlayer_SkillFireAOE;
+    private readonly InputAction m_NormalPlayer_GroundPound;
     /// <summary>
     /// Provides access to input actions defined in input action map "NormalPlayer".
     /// </summary>
@@ -418,6 +440,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "NormalPlayer/SkillFireAOE".
         /// </summary>
         public InputAction @SkillFireAOE => m_Wrapper.m_NormalPlayer_SkillFireAOE;
+        /// <summary>
+        /// Provides access to the underlying input action "NormalPlayer/GroundPound".
+        /// </summary>
+        public InputAction @GroundPound => m_Wrapper.m_NormalPlayer_GroundPound;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -465,6 +491,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @SkillFireAOE.started += instance.OnSkillFireAOE;
             @SkillFireAOE.performed += instance.OnSkillFireAOE;
             @SkillFireAOE.canceled += instance.OnSkillFireAOE;
+            @GroundPound.started += instance.OnGroundPound;
+            @GroundPound.performed += instance.OnGroundPound;
+            @GroundPound.canceled += instance.OnGroundPound;
         }
 
         /// <summary>
@@ -497,6 +526,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @SkillFireAOE.started -= instance.OnSkillFireAOE;
             @SkillFireAOE.performed -= instance.OnSkillFireAOE;
             @SkillFireAOE.canceled -= instance.OnSkillFireAOE;
+            @GroundPound.started -= instance.OnGroundPound;
+            @GroundPound.performed -= instance.OnGroundPound;
+            @GroundPound.canceled -= instance.OnGroundPound;
         }
 
         /// <summary>
@@ -586,5 +618,12 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkillFireAOE(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GroundPound" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGroundPound(InputAction.CallbackContext context);
     }
 }

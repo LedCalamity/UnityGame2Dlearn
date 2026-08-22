@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
     public event Action OnJump;
     public event Action<Vector2> OnMove;
     public event Action On4DirFire;
+    public event Action OnGroundPound;
+    InputAction groundPoundAction;
     void OnEnable()
     {
         // subscribe all event-subscribed functions to input, so input -> event -> function(logic)
@@ -26,6 +28,8 @@ public class InputManager : MonoBehaviour
         inputActions.NormalPlayer.Move.performed += HandleMove;
         inputActions.NormalPlayer.Move.canceled += HandleMove;
         inputActions.NormalPlayer.Skill4DirFire.performed += Handle4DirFire;
+        groundPoundAction = inputActions.NormalPlayer.Get().FindAction("GroundPound");
+        if (groundPoundAction != null) groundPoundAction.performed += HandleGroundPound;
     }
     private void OnDisable()
     {
@@ -38,6 +42,7 @@ public class InputManager : MonoBehaviour
         inputActions.NormalPlayer.Move.performed -= HandleMove;
         inputActions.NormalPlayer.Move.canceled -= HandleMove;
         inputActions.NormalPlayer.Skill4DirFire.performed -= Handle4DirFire;
+        if (groundPoundAction != null) groundPoundAction.performed -= HandleGroundPound;
     }
     void HandleFire(InputAction.CallbackContext ctx)
     {
@@ -66,5 +71,9 @@ public class InputManager : MonoBehaviour
     void Handle4DirFire(InputAction.CallbackContext ctx)
     {
         On4DirFire?.Invoke();
+    }
+    void HandleGroundPound(InputAction.CallbackContext ctx)
+    {
+        OnGroundPound?.Invoke();
     }
 }

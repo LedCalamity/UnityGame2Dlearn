@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit_sef;
     public AudioClip skill_4dir_fire_sef;
     public AudioClip skill_fire_aoe_sef;
+    public AudioClip ground_pound_sef;
 
     List<AudioSource> audios = new List<AudioSource>();
     Dictionary<string,AudioClip> audioClipDict = new Dictionary<string,AudioClip>();
@@ -36,6 +37,7 @@ public class AudioManager : MonoBehaviour
         audioClipDict.Add("Hit_sef", hit_sef);
         audioClipDict.Add("4DirFire_sef", skill_4dir_fire_sef);
         audioClipDict.Add("FireAOE_sef", skill_fire_aoe_sef);
+        audioClipDict.Add("GroundPound_sef", ground_pound_sef);
     }
     public void AudioPlay(int idx, string name, bool isLoop)
     {

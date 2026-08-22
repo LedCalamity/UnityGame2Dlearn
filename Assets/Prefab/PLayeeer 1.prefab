@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 6004087855382326637}
   - component: {fileID: 4619709392560623284}
   - component: {fileID: 7707929607394572665}
+  - component: {fileID: 1480937295718643026}
   m_Layer: 3
   m_Name: PLayeeer 1
   m_TagString: Player
@@ -349,3 +350,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9dd1a4a0e8ff540ac3fe8b654bcbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
+--- !u!114 &1480937295718643026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335794894627200333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a53e8d4c2b947b5a6d0f16e8c2479ab, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControlGroundPound

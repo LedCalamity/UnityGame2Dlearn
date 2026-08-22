@@ -7,6 +7,7 @@ public class EffectManager : MonoBehaviour
     public GameObject hiteffectPrefab;
     public GameObject skill4DirFireEffectPrefab;
     public GameObject skillFireAOEEffectPrefab;
+    public GameObject groundPoundEffectPrefab;
     public static EffectManager Instance;
     void Awake()
     {
@@ -28,6 +29,10 @@ public class EffectManager : MonoBehaviour
     public GameObject GenerateFireAOEEffect(Vector3 pos)
     {
         return Instantiate(skillFireAOEEffectPrefab, pos, Quaternion.identity);
+    }
+    public void GenerateGroundPoundEffect(Vector3 pos)
+    {
+        if (groundPoundEffectPrefab != null) Instantiate(groundPoundEffectPrefab, pos, Quaternion.identity);
     }
     public void GenerateDeathSlowMotion(float l_time)
     {
