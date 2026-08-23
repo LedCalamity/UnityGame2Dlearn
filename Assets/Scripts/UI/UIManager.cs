@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public Image playerhpbar;
     public Image cdimagecover;
+    public Image aoeCdImageCover;
     void Awake()
     {
         if(!Instance)

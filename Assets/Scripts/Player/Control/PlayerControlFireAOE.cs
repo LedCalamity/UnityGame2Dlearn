@@ -13,6 +13,13 @@ public class PlayerControlFireAOE : MonoBehaviour
         input_manager = GetComponent<InputManager>();
         input_manager.OnFireAOE += Skill_FireAOE;
     }
+    private void Start()
+    {
+        if (UIManager.Instance != null)
+        {
+            skill_cd = UIManager.Instance.aoeCdImageCover;
+        }
+    }
     private void OnDisable()
     {
         input_manager.OnFireAOE -= Skill_FireAOE;
@@ -36,6 +43,9 @@ public class PlayerControlFireAOE : MonoBehaviour
                 is_fire_aoe = false;
             }
         }
-        skill_cd.fillAmount = (cur_time == 0 ? 0 : (cd - cur_time) / cd);
+        if (skill_cd != null)
+        {
+            skill_cd.fillAmount = cur_time == 0 ? 0 : (cd - cur_time) / cd;
+        }
     }
 }

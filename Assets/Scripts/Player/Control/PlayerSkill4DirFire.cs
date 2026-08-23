@@ -41,6 +41,6 @@ public class PlayerSkill4DirFire : MonoBehaviour
                 is_4dir_fire = false;
             }
         }
-        skill_cd.fillAmount = (cur_time == 0 ? 0 : (cd - cur_time) / cd);
+        skill_cd.fillAmount = cur_time == 0 ? 0 : (cd - cur_time) / cd;
     }
 }
