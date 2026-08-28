@@ -20,6 +20,7 @@ public class PlayerControlGroundPound : MonoBehaviour
     Tilemap breakTilemap;
     Vector3Int breakCell;
 
+    public bool is_unlocked = false;
     public bool IsGroundPounding { get; private set; }
     public bool IsInvincible => IsGroundPounding || isLandingInvincible;
     public bool CanBreakTiles => canBreakTiles;
@@ -48,7 +49,7 @@ public class PlayerControlGroundPound : MonoBehaviour
 
     void TryStartGroundPound()
     {
-        if (IsGroundPounding || IsGrounded() || SkillManager.Instance == null)
+        if (!is_unlocked || IsGroundPounding || IsGrounded() || SkillManager.Instance == null)
         {
             return;
         }

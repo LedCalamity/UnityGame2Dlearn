@@ -14,5 +14,23 @@ public class TriggerDropDeath : MonoBehaviour
         {
             death_player.GetComponent<PlayerDeath>().PlayerDie();
         }
+        else if(collider.CompareTag("Enemies"))
+        {
+            EnemyDieDrop(collider);
+        }
+    }
+
+    private void EnemyDieDrop(Collider2D enemy_collider)
+    {
+        Rigidbody2D enemy_rb = enemy_collider.attachedRigidbody;
+
+        if(enemy_rb != null)
+        {
+            Destroy(enemy_rb.gameObject);
+        }
+        else
+        {
+            Destroy(enemy_collider.gameObject);
+        }
     }
 }

@@ -106,6 +106,9 @@ GameObject:
   - component: {fileID: 9088247430797369980}
   - component: {fileID: 95236270106536294}
   - component: {fileID: 2967502859886246188}
+  - component: {fileID: 6184039701201184001}
+  - component: {fileID: 6184039701201184002}
+  - component: {fileID: 6184039701201184003}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -180,3 +183,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d2b8680066e7144a592e760f8f3d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GeneralDontDestroy
+--- !u!114 &6184039701201184001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722701928820704563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineConfiner2D
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0.4
+  m_MaxWindowSize: -1
+  m_Padding: 0
+--- !u!114 &6184039701201184002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722701928820704563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9e0f1a2b3c44d5a6e7f8091a2b3c4d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CameraBoundaryBinder
+--- !u!114 &6184039701201184003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722701928820704563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3d643e3e2c80d4ab52d92f4dbdf145, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CameraDestroy
+  destroyScenesCamera:
+  - DeathScene
+  - MainMenu

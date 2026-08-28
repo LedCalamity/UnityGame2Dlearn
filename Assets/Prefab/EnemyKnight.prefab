@@ -237,7 +237,6 @@ MonoBehaviour:
   patrol_X:
   - -13
   - -5
-  player: {fileID: 0}
 --- !u!114 &-2547168906060483953
 MonoBehaviour:
   m_ObjectHideFlags: 0

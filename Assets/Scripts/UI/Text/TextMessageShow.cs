@@ -27,6 +27,14 @@ public class TextMessageShow : MonoBehaviour
     public void UnlockDash()
     {
         Mestext.text = "Dash Unlocked";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
+    public void UnlockDownpound()
+    {
+        Mestext.text = "Ground Pound Unlocked";
+        cur_time = 0f;
         is_showing = true;
         is_consistent = false;
     }
@@ -104,6 +112,26 @@ public class TextMessageShow : MonoBehaviour
         is_consistent = true;
     }
     public void ExitRegameHint()
+    {
+        ResetText();
+    }
+    public void EnterDownpoundHint()
+    {
+        Mestext.text = "White tiles can be broken by E-downpound at high height";
+        is_showing = true;
+        is_consistent = true;
+    }
+    public void ExitDownpoundHint()
+    {
+        ResetText();
+    }
+    public void EnterDownpoundNowHint()
+    {
+        Mestext.text = "Press R downpound now!";
+        is_showing = true;
+        is_consistent = true;
+    }
+    public void ExitDownpoundNowHint()
     {
         ResetText();
     }

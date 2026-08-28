@@ -11,13 +11,14 @@ public class EnemyFSM : MonoBehaviour
     float sight_remain_time = 2f, cur_lostsight_time = 0f;
     public float[] patrol_X = { -13, -5 };
     int patrol_ct = 0;
-    public GameObject player;
+    Transform player;
     Rigidbody2D rb;
     void Start()
     {
         state = States.Idle;
         enemyAnimManager = GetComponent<EnemyAnimManager>(); 
         rb = GetComponent<Rigidbody2D>();
+        TryFindPlayer();
     }
     void Update()
     {
@@ -50,7 +51,12 @@ public class EnemyFSM : MonoBehaviour
             }
             case States.Chase:
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, chase_speed * Time.deltaTime); //dash towards player
+                if (!TryFindPlayer())
+                {
+                    SwitchState(States.Idle);
+                    break;
+                }
+                transform.position = Vector2.MoveTowards(transform.position, player.position, chase_speed * Time.deltaTime); //dash towards player
                 if (!can_see_player)
                 {
                     cur_lostsight_time += Time.deltaTime;
@@ -74,14 +80,26 @@ public class EnemyFSM : MonoBehaviour
         Vector2 ori = (Vector2)transform.position + dir * (1f / 2f);
         RaycastHit2D hit = Physics2D.Raycast(ori, dir, eyesight, LayerMask.GetMask("PlayerLayer","Obstacle","Ground"));
         Debug.DrawRay(ori, dir * eyesight, Color.red);
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
-            return hit.collider.CompareTag("Player");
+            player = hit.collider.transform;
+            return true;
         }
         return false;
     }
+    bool TryFindPlayer()
+    {
+        if (player != null) return true;
+
+        GameObject player_object = GameObject.FindGameObjectWithTag("Player");
+        if (player_object == null) return false;
+
+        player = player_object.transform;
+        return true;
+    }
     public void SwitchState(States l_state)
     {
+        if (l_state == States.Chase && !TryFindPlayer()) l_state = States.Idle;
         state = l_state;
         if (l_state == States.Idle) cur_waiting_time = 0f;
         if (l_state == States.Chase) cur_lostsight_time = 0f;

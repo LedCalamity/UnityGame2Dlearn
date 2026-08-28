@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TriggerJumpHint : MonoBehaviour
+public class TriggerDownpoundHint : MonoBehaviour
 {
     TextMessageShow textMes;
     void Start()
@@ -10,18 +10,19 @@ public class TriggerJumpHint : MonoBehaviour
             textMes = UIManager.Instance.MessageText;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && textMes != null)
+        if(other.CompareTag("Player") && textMes != null)
         {
-            textMes.EnterJumpHint();
+            textMes.EnterDownpoundHint();
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player") && textMes != null)
         {
-            textMes.ExitJumpHint();
+            textMes.ExitDownpoundHint();
         }
     }
 }

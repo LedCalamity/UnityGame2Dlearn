@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class UnlockDash : MonoBehaviour
+public class UnlockDownpound : MonoBehaviour
 {
     TextMessageShow mes;
+
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -10,6 +11,7 @@ public class UnlockDash : MonoBehaviour
             mes = UIManager.Instance.MessageText;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(!collision.collider.CompareTag("Player"))
@@ -17,14 +19,14 @@ public class UnlockDash : MonoBehaviour
             return;
         }
 
-        PlayerControlDash dash = collision.collider.GetComponent<PlayerControlDash>();
-        if(dash == null)
+        PlayerControlGroundPound groundPound = collision.collider.GetComponent<PlayerControlGroundPound>();
+        if(groundPound == null)
         {
             return;
         }
 
-        dash.is_unlocked = true;
-        mes?.UnlockDash();
+        groundPound.is_unlocked = true;
+        mes?.UnlockDownpound();
         Destroy(gameObject);
     }
 }
