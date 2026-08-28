@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyAnimManager : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public class EnemyAnimManager : MonoBehaviour
         rd = GetComponent<SpriteRenderer>();
         enemy_state = GetComponent<EnemyFSM>();
         enemy_animator = GetComponent<Animator>();
+        last_x = transform.position.x;
+        cur_x = last_x;
     }
     void Update()
     {
@@ -21,20 +22,29 @@ public class EnemyAnimManager : MonoBehaviour
     }
     void EnemyCheckStatus()
     {
-        if (enemy_state.state == EnemyFSM.States.Patrol || enemy_state.state == EnemyFSM.States.Chase) 
-        {
-            enemy_animator.SetInteger("EnemyStatus", 1);
-        }
-        else if (enemy_state.state == EnemyFSM.States.Idle)
-        {
-            enemy_animator.SetInteger("EnemyStatus", 0);
-        }
+        enemy_animator.SetInteger("EnemyStatus", enemy_state.IsMoving ? 1 : 0);
     }
     void EnemyCheckDir()
     {
         last_x = cur_x;
         cur_x = transform.position.x;
         if (Mathf.Abs(cur_x - last_x) > 0.001f) is_face_right = (cur_x - last_x) > 0;  //avoid facing right all day long
+        ApplyFacingDirection();
+    }
+
+    public void SetFacingDirection(bool face_right)
+    {
+        is_face_right = face_right;
+        ApplyFacingDirection();
+    }
+
+    public void PlayAttack()
+    {
+        enemy_animator.SetTrigger("Attack");
+    }
+
+    void ApplyFacingDirection()
+    {
         if (is_face_right) //right
         {
             rd.flipX = false;

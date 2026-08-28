@@ -4,12 +4,16 @@ using UnityEngine.UI;
 public class Playerhp : MonoBehaviour
 {
     public int max_player_hp = 10;
+    [SerializeField, Min(0f)] float damage_invincible_duration = 0.5f;
+
     int cur_player_hp = 0;
+    float damage_invincible_remaining;
     public Image player_hp_bar;
     public static Playerhp Instance;
 
     public int CurrentHealth => cur_player_hp;
     public int MaxHealth => max_player_hp;
+    public bool IsDamageInvincible => damage_invincible_remaining > 0f;
 
     void Awake()
     {
@@ -26,8 +30,19 @@ public class Playerhp : MonoBehaviour
     }
     void Update()
     {
+        UpdateDamageInvincibility();
         CheckPlayerDeath();
         UpdateBar();
+    }
+
+    void UpdateDamageInvincibility()
+    {
+        if(damage_invincible_remaining <= 0f)
+        {
+            return;
+        }
+
+        damage_invincible_remaining = Mathf.Max(0f, damage_invincible_remaining - Time.deltaTime);
     }
     void CheckPlayerDeath()
     {
@@ -50,15 +65,17 @@ public class Playerhp : MonoBehaviour
             player_hp_bar.fillAmount = max_player_hp > 0 ? (float)cur_player_hp / max_player_hp : 0;
         }
     }
-    public void PlayerTakeDamage(int dmg)
+    public bool PlayerTakeDamage(int dmg)
     {
-        if(dmg <= 0)
+        if(dmg <= 0 || cur_player_hp <= 0 || IsDamageInvincible)
         {
-            return;
+            return false;
         }
 
         cur_player_hp = Mathf.Max(0, cur_player_hp - dmg);
+        damage_invincible_remaining = damage_invincible_duration;
         UpdateBar();
+        return true;
     }
 
     public bool RestoreHealth(int amount)

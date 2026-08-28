@@ -2,61 +2,183 @@ using UnityEngine;
 
 public class ChaserBulletController : MonoBehaviour
 {
-    float fire_speed = 8f;
-    float cur_t = 0f, exist_time = 3f, chase_time = 2f;
-    public float chase_range = 3f;
+    [SerializeField] float fire_speed = 8f;
+    [SerializeField] float turn_speed = 900f;
+    [SerializeField] float exist_time = 3f;
+    [SerializeField] float chase_time = 2f;
+    [SerializeField] float chase_range = 3f;
+    [SerializeField, Min(0.02f)] float target_search_interval = 0.1f;
+
+    float cur_t;
+    float current_search_time;
+    int damage;
+    bool is_enemy_bullet;
     Transform targetTransform;
+    Collider2D targetCollider;
+    Rigidbody2D rb;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public void Init(bool l_dir)
     {
-        transform.rotation = (l_dir ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 0, 180));
+        rb.rotation = l_dir ? 0f : 180f;
+        InitPlayer();
     }
+
+    public void InitPlayer()
+    {
+        is_enemy_bullet = false;
+        damage = BulletData.Instance.getBulletData("ChaserBullet").damage;
+        TryFindEnemyTarget();
+        current_search_time = target_search_interval;
+    }
+
+    public void Init(Transform target, int bullet_damage)
+    {
+        is_enemy_bullet = true;
+        SetTarget(target);
+        damage = Mathf.Max(0, bullet_damage);
+
+        if(targetTransform != null)
+        {
+            Vector2 direction = GetTargetPosition() - rb.position;
+            rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        }
+    }
+
     void Update()
     {
-        CheckDegree();
         cur_t += Time.deltaTime;
         if (cur_t >= exist_time) Destroy(gameObject);
     }
-    void CheckDegree()
+
+    void FixedUpdate()
     {
-        if (cur_t < chase_time)
+        float move_angle = rb.rotation;
+
+        if(cur_t < chase_time && !is_enemy_bullet && targetTransform == null)
         {
-            //if we have found the target, chase it
-            if (targetTransform)
+            current_search_time -= Time.fixedDeltaTime;
+            if(current_search_time <= 0f)
             {
-                var diff = targetTransform.position - transform.position;
-                float nowZ = transform.rotation.eulerAngles.z;
-                float toZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(nowZ, toZ, 0.1f));
+                TryFindEnemyTarget();
+                current_search_time = target_search_interval;
             }
-            //if not we try to find with raycast
-            else
+        }
+
+        if(cur_t < chase_time && targetTransform != null)
+        {
+            Vector2 difference = GetTargetPosition() - rb.position;
+            float target_angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            move_angle = Mathf.MoveTowardsAngle(rb.rotation, target_angle, turn_speed * Time.fixedDeltaTime);
+            rb.MoveRotation(move_angle);
+        }
+
+        float move_radians = move_angle * Mathf.Deg2Rad;
+        rb.linearVelocity = new Vector2(Mathf.Cos(move_radians), Mathf.Sin(move_radians)) * fire_speed;
+    }
+
+    void TryFindEnemyTarget()
+    {
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, chase_range, LayerMask.GetMask("EnemyLayer"));
+        float closest_distance = float.PositiveInfinity;
+        SetTarget(null);
+
+        foreach(Collider2D target in targets)
+        {
+            EnemyHP enemy_hp = target.GetComponentInParent<EnemyHP>();
+            if(enemy_hp == null)
             {
-                for (int i = 0; i < 8; i++)
+                continue;
+            }
+
+            Collider2D enemy_collider = enemy_hp.GetComponent<Collider2D>();
+            if(enemy_collider == null)
+            {
+                enemy_collider = target;
+            }
+
+            float distance = (enemy_collider.bounds.center - (Vector3)rb.position).sqrMagnitude;
+            if(distance >= closest_distance)
+            {
+                continue;
+            }
+
+            closest_distance = distance;
+            SetTarget(enemy_hp.transform, enemy_collider);
+        }
+    }
+
+    void SetTarget(Transform target, Collider2D known_collider = null)
+    {
+        targetTransform = target;
+        targetCollider = known_collider;
+
+        if(targetTransform == null || targetCollider != null)
+        {
+            return;
+        }
+
+        targetCollider = targetTransform.GetComponent<Collider2D>();
+        if(targetCollider == null)
+        {
+            targetCollider = targetTransform.GetComponentInChildren<Collider2D>();
+        }
+    }
+
+    Vector2 GetTargetPosition()
+    {
+        if(targetCollider != null && targetCollider.enabled)
+        {
+            return targetCollider.bounds.center;
+        }
+
+        return targetTransform != null ? targetTransform.position : rb.position;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Detectors"))
+        {
+            return;
+        }
+
+        if(is_enemy_bullet)
+        {
+            if(collider.CompareTag("Enemies"))
+            {
+                return;
+            }
+
+            if(collider.CompareTag("Player"))
+            {
+                PlayerControlGroundPound ground_pound = collider.GetComponent<PlayerControlGroundPound>();
+                if(ground_pound == null || !ground_pound.IsInvincible)
                 {
-                    float deg = 45f * i;
-                    float rad = Mathf.Deg2Rad * deg;
-                    float xx = Mathf.Cos(rad), yy = Mathf.Sin(rad);
-                    var hit = Physics2D.Raycast(transform.position, new Vector2(xx, yy), chase_range, LayerMask.GetMask("EnemyLayer"));
-                    if (hit)
+                    if(Playerhp.Instance.PlayerTakeDamage(damage))
                     {
-                        targetTransform = hit.collider.transform;
-                        break;
+                        AudioManager.Instance.AudioPlay(3, "Hit_sef", false);
                     }
                 }
             }
-            Vector3 off_pos = transform.right * fire_speed * Time.deltaTime;
-            transform.position += off_pos;
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (!collider.CompareTag("Player") && !collider.CompareTag("Detectors"))
-        {
-            if (collider.CompareTag("Enemies"))
-            {
-                collider.GetComponent<EnemyHP>().DeductHealth(BulletData.Instance.getBulletData("ChaserBullet").damage);
-            }
+
             Destroy(gameObject);
+            return;
         }
+
+        if(collider.CompareTag("Player"))
+        {
+            return;
+        }
+
+        if(collider.CompareTag("Enemies") && collider.TryGetComponent(out EnemyHP enemy_hp))
+        {
+            enemy_hp.DeductHealth(damage);
+        }
+
+        Destroy(gameObject);
     }
 }

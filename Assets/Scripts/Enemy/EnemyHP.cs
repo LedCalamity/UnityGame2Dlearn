@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    public int max_hp = 10;
+    [Min(1)] public int max_hp = 10;
     int cur_hp = 0;
     public GameObject hp_bar;
     void Start()
@@ -28,18 +28,26 @@ public class EnemyHP : MonoBehaviour
     void UpdateRender()
     {
         if (hp_bar == null) return;
-        float pct = (float)cur_hp / (float)max_hp;
+        float pct = max_hp > 0 ? Mathf.Clamp01((float)cur_hp / max_hp) : 0f;
         hp_bar.transform.localScale = new Vector3(pct, hp_bar.transform.localScale.y, 1);
     }
     public void DeductHealth(int hp, bool generateBloodEffect = true)
     {
-        cur_hp -= hp;
-
-        if (generateBloodEffect)
+        if(hp <= 0)
         {
-            GetComponent<EnemyEffects>().BloodEffect();
+            return;
         }
 
-        GetComponent<EnemyFSM>().SwitchStateStr("Chase");
+        cur_hp -= hp;
+
+        if(generateBloodEffect && TryGetComponent(out EnemyEffects enemy_effects))
+        {
+            enemy_effects.BloodEffect();
+        }
+
+        if(TryGetComponent(out EnemyFSM enemy_fsm))
+        {
+            enemy_fsm.OnDamaged();
+        }
     }
 }

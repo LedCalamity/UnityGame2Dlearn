@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7199647072456916162}
   - component: {fileID: -8059361007871936348}
   m_Layer: 9
-  m_Name: ChaserBullet
+  m_Name: EnemyChaserBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8415071951692299394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.46947, y: -0.29918, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaserBulletController
   fire_speed: 8
-  turn_speed: 900
+  turn_speed: 450
   exist_time: 3
   chase_time: 2
   chase_range: 3

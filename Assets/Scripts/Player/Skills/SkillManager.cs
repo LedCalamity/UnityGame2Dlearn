@@ -38,12 +38,25 @@ public class SkillManager : MonoBehaviour
         //Audio
         AudioManager.Instance.AudioPlay(2, "4DirFire_sef", false);
         //action(logic)
-        Instantiate(fire_bulletPrefab, pos, Quaternion.Euler(0, 0, 45));
-        Instantiate(fire_bulletPrefab, pos, Quaternion.Euler(0, 0, 135));
-        Instantiate(fire_bulletPrefab, pos, Quaternion.Euler(0, 0, 225));
-        Instantiate(fire_bulletPrefab, pos, Quaternion.Euler(0, 0, 315));
+        Spawn4DirChaserBullet(pos, 45f);
+        Spawn4DirChaserBullet(pos, 135f);
+        Spawn4DirChaserBullet(pos, 225f);
+        Spawn4DirChaserBullet(pos, 315f);
 
         yield return new WaitForSeconds(0.5f);
+    }
+
+    void Spawn4DirChaserBullet(Vector3 position, float angle)
+    {
+        GameObject bullet = Instantiate(fire_bulletPrefab, position, Quaternion.Euler(0f, 0f, angle));
+        if(bullet.TryGetComponent(out ChaserBulletController bullet_controller))
+        {
+            bullet_controller.InitPlayer();
+            return;
+        }
+
+        Debug.LogWarning("The 4DirFire bullet prefab needs ChaserBulletController.", bullet);
+        Destroy(bullet);
     }
     public void CallSkillFireAOETask(Vector3 pos)
     {

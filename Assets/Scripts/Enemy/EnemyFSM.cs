@@ -6,21 +6,24 @@ public class EnemyFSM : MonoBehaviour
     float patrol_speed = 1.5f, chase_speed = 3f;
     float eyesight = 10f;
     public States state;
-    EnemyAnimManager enemyAnimManager;
+    protected EnemyAnimManager enemyAnimManager;
     float idle_waiting_time = 2f, cur_waiting_time = 0f;
     float sight_remain_time = 2f, cur_lostsight_time = 0f;
     public float[] patrol_X = { -13, -5 };
     int patrol_ct = 0;
-    Transform player;
-    Rigidbody2D rb;
-    void Start()
+    protected Transform player;
+    protected Rigidbody2D rb;
+
+    public virtual bool IsMoving => state == States.Patrol || state == States.Chase;
+
+    protected virtual void Start()
     {
         state = States.Idle;
         enemyAnimManager = GetComponent<EnemyAnimManager>(); 
         rb = GetComponent<Rigidbody2D>();
         TryFindPlayer();
     }
-    void Update()
+    protected virtual void Update()
     {
         UpdateEnemyState();
     }
@@ -51,24 +54,7 @@ public class EnemyFSM : MonoBehaviour
             }
             case States.Chase:
             {
-                if (!TryFindPlayer())
-                {
-                    SwitchState(States.Idle);
-                    break;
-                }
-                transform.position = Vector2.MoveTowards(transform.position, player.position, chase_speed * Time.deltaTime); //dash towards player
-                if (!can_see_player)
-                {
-                    cur_lostsight_time += Time.deltaTime;
-                }
-                else
-                {
-                    cur_lostsight_time = 0f;
-                }
-                if(cur_lostsight_time > sight_remain_time)
-                {
-                    SwitchState(States.Idle);
-                }
+                UpdateChaseState(can_see_player);
                 break;
             }
         }
@@ -87,7 +73,39 @@ public class EnemyFSM : MonoBehaviour
         }
         return false;
     }
-    bool TryFindPlayer()
+    protected virtual void UpdateChaseState(bool can_see_player)
+    {
+        if(!TryFindPlayer())
+        {
+            SwitchState(States.Idle);
+            return;
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position, player.position, chase_speed * Time.deltaTime); //dash towards player
+        UpdateLostSight(can_see_player);
+    }
+
+    protected bool UpdateLostSight(bool can_see_player)
+    {
+        if(!can_see_player)
+        {
+            cur_lostsight_time += Time.deltaTime;
+        }
+        else
+        {
+            cur_lostsight_time = 0f;
+        }
+
+        if(cur_lostsight_time <= sight_remain_time)
+        {
+            return false;
+        }
+
+        SwitchState(States.Idle);
+        return true;
+    }
+
+    protected bool TryFindPlayer()
     {
         if (player != null) return true;
 
@@ -103,9 +121,15 @@ public class EnemyFSM : MonoBehaviour
         state = l_state;
         if (l_state == States.Idle) cur_waiting_time = 0f;
         if (l_state == States.Chase) cur_lostsight_time = 0f;
+        OnStateEntered(l_state);
     }
-    public void SwitchStateStr(string l_state)
+
+    public void OnDamaged()
     {
-        if (l_state == "Chase") SwitchState(States.Chase);
+        SwitchState(States.Chase);
+    }
+
+    protected virtual void OnStateEntered(States new_state)
+    {
     }
 }
