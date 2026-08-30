@@ -29,7 +29,7 @@ public class EnemyFSM : MonoBehaviour
     }
     void UpdateEnemyState()
     {
-        if (Mathf.Abs(rb.linearVelocityX) > 0.01f) rb.linearVelocityX = 0f;
+        PrepareStateUpdate();
         bool can_see_player = CheckEyeSight();
         switch(state)
         {
@@ -45,11 +45,7 @@ public class EnemyFSM : MonoBehaviour
             }
             case States.Patrol:
             {
-                transform.position = Vector2.MoveTowards(transform.position,
-                    new Vector2(patrol_X[patrol_ct % 2], transform.position.y),
-                    patrol_speed * Time.deltaTime); //patrolling between fixed points
-                if (Mathf.Abs(transform.position.x - patrol_X[patrol_ct % 2]) <= 0.01f) patrol_ct++;
-                if (can_see_player) SwitchState(States.Chase);
+                UpdatePatrolState(can_see_player);
                 break;
             }
             case States.Chase:
@@ -60,7 +56,22 @@ public class EnemyFSM : MonoBehaviour
         }
         
     }
-    bool CheckEyeSight()
+
+    protected virtual void PrepareStateUpdate()
+    {
+        if (Mathf.Abs(rb.linearVelocityX) > 0.01f) rb.linearVelocityX = 0f;
+    }
+
+    protected virtual void UpdatePatrolState(bool can_see_player)
+    {
+        transform.position = Vector2.MoveTowards(transform.position,
+            new Vector2(patrol_X[patrol_ct % 2], transform.position.y),
+            patrol_speed * Time.deltaTime); //patrolling between fixed points
+        if (Mathf.Abs(transform.position.x - patrol_X[patrol_ct % 2]) <= 0.01f) patrol_ct++;
+        if (can_see_player) SwitchState(States.Chase);
+    }
+
+    protected virtual bool CheckEyeSight()
     {
         Vector2 dir = (enemyAnimManager.is_face_right ? Vector2.right : Vector2.left);
         Vector2 ori = (Vector2)transform.position + dir * (1f / 2f);
