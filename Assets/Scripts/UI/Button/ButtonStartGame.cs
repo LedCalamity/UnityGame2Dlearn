@@ -1,16 +1,21 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonStartGame : MonoBehaviour
 {
     [SerializeField] private Button button;
+    [SerializeField] GameObject level_select_panel;
+
+    PanelChanger panel_changer;
+
     void Start()
     {
-        button.onClick.AddListener(CallScene);
+        panel_changer = GetComponent<PanelChanger>();
+        button.onClick.AddListener(OpenLevelSelect);
     }
-    void CallScene()
+
+    void OpenLevelSelect()
     {
-        SceneMgr.Instance.LoadScene("Level0");
+        panel_changer.ShowPanel(level_select_panel);
     }
 }

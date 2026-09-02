@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -1849105424971929149}
   - component: {fileID: -2547168906060483953}
   - component: {fileID: -1327892167057093916}
+  - component: {fileID: 6035571146629836831}
   m_Layer: 8
   m_Name: EnemyKnight
   m_TagString: Enemies
@@ -192,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25a6610261099c4398982a44efdc2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
-  max_hp: 10
   hp_bar: {fileID: 1805815618267957903}
 --- !u!50 &7919693573081297555
 Rigidbody2D:
@@ -234,9 +234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
   state: 0
-  patrol_X:
-  - -13
-  - -5
 --- !u!114 &-2547168906060483953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +259,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1547db29d0622824f949c360034e4b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffects
+--- !u!114 &6035571146629836831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429036955623968912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9be7e46e941d4d8709317303de9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  max_hp: 10
+  contact_damage: 2
+  patrol_speed: 1.5
+  chase_speed: 3
+  patrol_X:
+  - -13
+  - -5
+  eyesight: 10
+  idle_waiting_time: 2
+  sight_remain_time: 2
 --- !u!1001 &1930047528181252180
 PrefabInstance:
   m_ObjectHideFlags: 0

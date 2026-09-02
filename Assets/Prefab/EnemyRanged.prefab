@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -1849105424971929149}
   - component: {fileID: -2547168906060483953}
   - component: {fileID: -1327892167057093916}
+  - component: {fileID: 2295532597754209516}
   m_Layer: 8
   m_Name: EnemyRanged
   m_TagString: Enemies
@@ -181,7 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867bfbfffb7fe854087cf35655e45d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
-  contact_damage: 1
 --- !u!114 &-8697363890264278173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25a6610261099c4398982a44efdc2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
-  max_hp: 6
   hp_bar: {fileID: 1805815618267957903}
 --- !u!50 &7919693573081297555
 Rigidbody2D:
@@ -236,13 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedFSM
   state: 0
-  patrol_X:
-  - -13
-  - -5
-  chaser_bullet_prefab: {fileID: 8415071951692299394, guid: 7ab4d692e80543efa1c37b96fd4285e0, type: 3}
-  bullet_spawn_point: {fileID: 8246109357724801635}
-  fire_interval: 1
-  bullet_damage: 1
 --- !u!114 &-2547168906060483953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +260,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1547db29d0622824f949c360034e4b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffects
+--- !u!114 &2295532597754209516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429036955623968912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa654dc3c7e69f4ea10cd5323eb8c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedData
+  max_hp: 6
+  contact_damage: 1
+  patrol_speed: 1.5
+  chase_speed: 3
+  patrol_X:
+  - -13
+  - -5
+  eyesight: 10
+  idle_waiting_time: 2
+  sight_remain_time: 2
+  chaser_bullet_prefab: {fileID: 8415071951692299394, guid: 7ab4d692e80543efa1c37b96fd4285e0, type: 3}
+  bullet_spawn_point: {fileID: 8246109357724801635}
+  fire_interval: 1
+  bullet_damage: 1
 --- !u!1 &7319082461503728496
 GameObject:
   m_ObjectHideFlags: 0

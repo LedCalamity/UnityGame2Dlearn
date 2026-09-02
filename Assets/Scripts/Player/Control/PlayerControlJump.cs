@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerControlJump : MonoBehaviour
 {
     public float jump_mag = 5f;
-    bool is_grounded = true;
+    public bool is_grounded = true;
     int jump_time = 1, jump_ct = 0;
     Rigidbody2D rb;
     public LayerMask groundLayer;

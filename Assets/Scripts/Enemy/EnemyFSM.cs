@@ -3,21 +3,36 @@ using UnityEngine;
 public class EnemyFSM : MonoBehaviour
 {
     public enum States { Idle, Patrol, Chase }
-    float patrol_speed = 1.5f, chase_speed = 3f;
-    float eyesight = 10f;
     public States state;
     protected EnemyAnimManager enemyAnimManager;
-    float idle_waiting_time = 2f, cur_waiting_time = 0f;
-    float sight_remain_time = 2f, cur_lostsight_time = 0f;
-    public float[] patrol_X = { -13, -5 };
+    protected EnemyData enemy_data;
+    float cur_waiting_time = 0f;
+    float cur_lostsight_time = 0f;
     int patrol_ct = 0;
     protected Transform player;
     protected Rigidbody2D rb;
 
     public virtual bool IsMoving => state == States.Patrol || state == States.Chase;
 
+    protected virtual void Awake()
+    {
+        enemy_data = GetComponent<EnemyData>();
+        if(enemy_data != null)
+        {
+            return;
+        }
+
+        Debug.LogError($"{GetType().Name} needs an EnemyData component.", this);
+        enabled = false;
+    }
+
     protected virtual void Start()
     {
+        if(!enabled)
+        {
+            return;
+        }
+
         state = States.Idle;
         enemyAnimManager = GetComponent<EnemyAnimManager>(); 
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +51,7 @@ public class EnemyFSM : MonoBehaviour
             case States.Idle:
             {
                 cur_waiting_time += Time.deltaTime;
-                if (cur_waiting_time > idle_waiting_time)
+                if (cur_waiting_time > enemy_data.IdleWaitingTime)
                 {
                     SwitchState(States.Patrol);
                 }
@@ -64,10 +79,18 @@ public class EnemyFSM : MonoBehaviour
 
     protected virtual void UpdatePatrolState(bool can_see_player)
     {
+        float[] patrol_positions = enemy_data.PatrolX;
+        if(patrol_positions == null || patrol_positions.Length == 0)
+        {
+            if(can_see_player) SwitchState(States.Chase);
+            return;
+        }
+
+        float target_x = patrol_positions[patrol_ct % patrol_positions.Length];
         transform.position = Vector2.MoveTowards(transform.position,
-            new Vector2(patrol_X[patrol_ct % 2], transform.position.y),
-            patrol_speed * Time.deltaTime); //patrolling between fixed points
-        if (Mathf.Abs(transform.position.x - patrol_X[patrol_ct % 2]) <= 0.01f) patrol_ct++;
+            new Vector2(target_x, transform.position.y),
+            enemy_data.PatrolSpeed * Time.deltaTime); //patrolling between fixed points
+        if (Mathf.Abs(transform.position.x - target_x) <= 0.01f) patrol_ct++;
         if (can_see_player) SwitchState(States.Chase);
     }
 
@@ -75,8 +98,8 @@ public class EnemyFSM : MonoBehaviour
     {
         Vector2 dir = (enemyAnimManager.is_face_right ? Vector2.right : Vector2.left);
         Vector2 ori = (Vector2)transform.position + dir * (1f / 2f);
-        RaycastHit2D hit = Physics2D.Raycast(ori, dir, eyesight, LayerMask.GetMask("PlayerLayer","Obstacle","Ground"));
-        Debug.DrawRay(ori, dir * eyesight, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(ori, dir, enemy_data.Eyesight, LayerMask.GetMask("PlayerLayer","Obstacle","Ground"));
+        Debug.DrawRay(ori, dir * enemy_data.Eyesight, Color.red);
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             player = hit.collider.transform;
@@ -92,7 +115,7 @@ public class EnemyFSM : MonoBehaviour
             return;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, player.position, chase_speed * Time.deltaTime); //dash towards player
+        transform.position = Vector2.MoveTowards(transform.position, player.position, enemy_data.ChaseSpeed * Time.deltaTime); //dash towards player
         UpdateLostSight(can_see_player);
     }
 
@@ -107,7 +130,7 @@ public class EnemyFSM : MonoBehaviour
             cur_lostsight_time = 0f;
         }
 
-        if(cur_lostsight_time <= sight_remain_time)
+        if(cur_lostsight_time <= enemy_data.SightRemainTime)
         {
             return false;
         }

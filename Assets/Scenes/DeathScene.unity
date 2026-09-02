@@ -1290,7 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930441268}
   - component: {fileID: 1930441270}
-  - component: {fileID: 1930441269}
+  - component: {fileID: 1930441271}
   m_Layer: 0
   m_Name: SceneManagementtt
   m_TagString: Untagged
@@ -1313,19 +1313,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1930441269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930441267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c648fa58709a8c143a6b146d25a78f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonStartGame
-  button: {fileID: 1578366395}
 --- !u!114 &1930441270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1326,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonQuitGame
   button_quit: {fileID: 1111786824}
+--- !u!114 &1930441271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930441267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d2b7006174bf8a4faecacb015ed42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonRestart
+  button_restart: {fileID: 1578366395}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

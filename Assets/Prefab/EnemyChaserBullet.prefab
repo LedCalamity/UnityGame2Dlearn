@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaserBulletController
   fire_speed: 8
-  turn_speed: 450
+  turn_speed: 240
   exist_time: 3
-  chase_time: 2
-  chase_range: 3
+  chase_time: 1.5
+  chase_range: 2
   target_search_interval: 0.1
 --- !u!61 &-8059361007871936348
 BoxCollider2D:

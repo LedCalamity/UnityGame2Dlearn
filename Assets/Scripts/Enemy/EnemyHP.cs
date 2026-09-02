@@ -2,12 +2,28 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    [Min(1)] public int max_hp = 10;
+    EnemyData enemy_data;
     int cur_hp = 0;
     public GameObject hp_bar;
+    void Awake()
+    {
+        enemy_data = GetComponent<EnemyData>();
+        if(enemy_data != null)
+        {
+            return;
+        }
+
+        Debug.LogError("EnemyHP needs an EnemyData component.", this);
+        enabled = false;
+    }
     void Start()
     {
-        cur_hp = max_hp;
+        if(!enabled)
+        {
+            return;
+        }
+
+        cur_hp = enemy_data.MaxHp;
     }
 
     // Update is called once per frame
@@ -28,7 +44,7 @@ public class EnemyHP : MonoBehaviour
     void UpdateRender()
     {
         if (hp_bar == null) return;
-        float pct = max_hp > 0 ? Mathf.Clamp01((float)cur_hp / max_hp) : 0f;
+        float pct = enemy_data.MaxHp > 0 ? Mathf.Clamp01((float)cur_hp / enemy_data.MaxHp) : 0f;
         hp_bar.transform.localScale = new Vector3(pct, hp_bar.transform.localScale.y, 1);
     }
     public void DeductHealth(int hp, bool generateBloodEffect = true)

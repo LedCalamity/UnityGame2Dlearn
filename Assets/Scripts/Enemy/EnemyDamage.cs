@@ -2,7 +2,19 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField, Min(0)] int contact_damage = 2;
+    EnemyData enemy_data;
+
+    void Awake()
+    {
+        enemy_data = GetComponent<EnemyData>();
+        if(enemy_data != null)
+        {
+            return;
+        }
+
+        Debug.LogError("EnemyDamage needs an EnemyData component.", this);
+        enabled = false;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -10,7 +22,7 @@ public class EnemyDamage : MonoBehaviour
         {
             PlayerControlGroundPound groundPound = collision.collider.GetComponent<PlayerControlGroundPound>();
             if (groundPound != null && groundPound.IsInvincible) return;
-            if(Playerhp.Instance.PlayerTakeDamage(contact_damage))
+            if(Playerhp.Instance.PlayerTakeDamage(enemy_data.ContactDamage))
             {
                 AudioManager.Instance.AudioPlay(3, "Hit_sef", false);
             }

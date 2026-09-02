@@ -2,14 +2,28 @@ using UnityEngine;
 
 public class EnemyRangedFSM : EnemyFSM
 {
-    [SerializeField] GameObject chaser_bullet_prefab;
-    [SerializeField] Transform bullet_spawn_point;
-    [SerializeField, Min(0.1f)] float fire_interval = 1.5f;
-    [SerializeField, Min(0)] int bullet_damage = 1;
-
+    EnemyRangedData ranged_data;
     float current_fire_time;
 
     public override bool IsMoving => state == States.Patrol;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if(!enabled)
+        {
+            return;
+        }
+
+        ranged_data = enemy_data as EnemyRangedData;
+        if(ranged_data != null)
+        {
+            return;
+        }
+
+        Debug.LogError("EnemyRangedFSM needs an EnemyRangedData component.", this);
+        enabled = false;
+    }
 
     protected override void UpdateChaseState(bool can_see_player)
     {
@@ -29,7 +43,7 @@ public class EnemyRangedFSM : EnemyFSM
         }
 
         current_fire_time += Time.deltaTime;
-        if(current_fire_time < fire_interval)
+        if(current_fire_time < ranged_data.FireInterval)
         {
             return;
         }
@@ -48,6 +62,7 @@ public class EnemyRangedFSM : EnemyFSM
 
     void UpdateBulletSpawnDirection(bool face_right)
     {
+        Transform bullet_spawn_point = ranged_data.BulletSpawnPoint;
         if(bullet_spawn_point == null)
         {
             return;
@@ -60,6 +75,8 @@ public class EnemyRangedFSM : EnemyFSM
 
     void FireChaserBullet()
     {
+        GameObject chaser_bullet_prefab = ranged_data.ChaserBulletPrefab;
+        Transform bullet_spawn_point = ranged_data.BulletSpawnPoint;
         if(chaser_bullet_prefab == null || bullet_spawn_point == null)
         {
             Debug.LogWarning("EnemyRangedFSM needs a Chaser Bullet Prefab and Bullet Spawn Point.", this);
@@ -75,6 +92,6 @@ public class EnemyRangedFSM : EnemyFSM
         }
 
         enemyAnimManager.PlayAttack();
-        bullet_controller.Init(player, bullet_damage);
+        bullet_controller.Init(player, ranged_data.BulletDamage);
     }
 }

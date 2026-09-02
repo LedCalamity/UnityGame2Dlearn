@@ -3,11 +3,13 @@ using UnityEngine;
 public class AnimManager : MonoBehaviour
 {
     PlayerControlMove move_ins;
+    PlayerControlJump jump_ins;
     Animator animator;
     SpriteRenderer rd;
     void Start()
     {
         move_ins = GetComponent<PlayerControlMove>();
+        jump_ins = GetComponent<PlayerControlJump>();
         animator = GetComponent<Animator>();
         rd = GetComponent<SpriteRenderer>();
     }
@@ -18,7 +20,7 @@ public class AnimManager : MonoBehaviour
     }
     void CheckMove()
     {
-        if (move_ins.move_vec.magnitude >= 0.001f)
+        if (move_ins.move_vec.magnitude >= 0.001f && jump_ins.is_grounded)
         {
             animator.SetInteger("AnimStatus", 1);
         }

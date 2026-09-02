@@ -4,33 +4,7 @@ public class EnemyFlyFSM : EnemyFSM
 {
     enum ChasePhase { Shooting, ChargePrepare, Charging, Recovery }
 
-    [Header("Patrol")]
-    [SerializeField] Vector2[] patrol_point_offsets = { new Vector2(-3f, 0f), new Vector2(0f, 2f), new Vector2(3f, 0f) };
-    [SerializeField, Min(0f)] float fly_patrol_speed = 2f;
-    [SerializeField, Min(0.01f)] float patrol_reach_distance = 0.05f;
-    [SerializeField, Min(0f)] float patrol_wait_time = 0.5f;
-
-    [Header("Sight")]
-    [SerializeField] Transform sight_origin;
-    [SerializeField, Min(0f)] float sight_distance = 8f;
-    [SerializeField, Range(0f, 360f)] float sight_angle = 90f;
-    [SerializeField] LayerMask player_layer = 1 << 3;
-    [SerializeField] LayerMask sight_blocking_layers = (1 << 6) | (1 << 7);
-
-    [Header("Shooting")]
-    [SerializeField] GameObject chaser_bullet_prefab;
-    [SerializeField] Transform bullet_spawn_point;
-    [SerializeField, Min(0.1f)] float fire_interval = 1f;
-    [SerializeField, Min(0)] int bullet_damage = 1;
-    [SerializeField, Min(1)] int shots_before_charge = 3;
-
-    [Header("Charge")]
-    [SerializeField, Min(0f)] float charge_prepare_time = 0.6f;
-    [SerializeField, Min(0f)] float charge_speed = 8f;
-    [SerializeField, Min(0.01f)] float charge_duration = 0.8f;
-    [SerializeField, Min(0f)] float recovery_time = 0.8f;
-    [SerializeField] LayerMask charge_stop_layers = (1 << 6) | (1 << 7);
-
+    EnemyFlyData fly_data;
     ChasePhase chase_phase;
     Vector2 patrol_origin;
     Vector2 charge_direction;
@@ -50,9 +24,32 @@ public class EnemyFlyFSM : EnemyFSM
             (chase_phase == ChasePhase.Charging ||
             (chase_phase == ChasePhase.Shooting && has_shooting_move_target)));
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if(!enabled)
+        {
+            return;
+        }
+
+        fly_data = enemy_data as EnemyFlyData;
+        if(fly_data != null)
+        {
+            return;
+        }
+
+        Debug.LogError("EnemyFlyFSM needs an EnemyFlyData component.", this);
+        enabled = false;
+    }
+
     protected override void Start()
     {
         base.Start();
+        if(!enabled || rb == null)
+        {
+            return;
+        }
+
         patrol_origin = rb.position;
     }
 
@@ -75,13 +72,14 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         patrol_wait_timer += Time.deltaTime;
-        if(patrol_wait_timer < patrol_wait_time)
+        if(patrol_wait_timer < fly_data.PatrolWaitTime)
         {
             return;
         }
 
         patrol_wait_timer = 0f;
         is_waiting_at_patrol_point = false;
+        Vector2[] patrol_point_offsets = fly_data.PatrolPointOffsets;
         if(patrol_point_offsets != null && patrol_point_offsets.Length > 0)
         {
             patrol_index = (patrol_index + 1) % patrol_point_offsets.Length;
@@ -98,7 +96,7 @@ public class EnemyFlyFSM : EnemyFSM
         Vector2 origin = GetSightOrigin();
         Vector2 to_player = GetPlayerCenter() - origin;
         float player_distance = to_player.magnitude;
-        if(player_distance > sight_distance)
+        if(player_distance > fly_data.SightDistance)
         {
             return false;
         }
@@ -109,13 +107,13 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         Vector2 forward = enemyAnimManager.is_face_right ? Vector2.right : Vector2.left;
-        float minimum_dot = Mathf.Cos(sight_angle * 0.5f * Mathf.Deg2Rad);
+        float minimum_dot = Mathf.Cos(fly_data.SightAngle * 0.5f * Mathf.Deg2Rad);
         if(Vector2.Dot(forward, to_player.normalized) < minimum_dot)
         {
             return false;
         }
 
-        int sight_layers = player_layer.value | sight_blocking_layers.value;
+        int sight_layers = fly_data.PlayerLayer.value | fly_data.SightBlockingLayers.value;
         RaycastHit2D hit = Physics2D.Raycast(origin, to_player.normalized, player_distance, sight_layers);
         bool can_see_player = IsPlayerCollider(hit.collider);
         Debug.DrawRay(origin, to_player, can_see_player ? Color.green : Color.red);
@@ -210,7 +208,7 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         current_fire_time += Time.deltaTime;
-        if(current_fire_time < fire_interval)
+        if(current_fire_time < fly_data.FireInterval)
         {
             return;
         }
@@ -222,7 +220,7 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         shots_fired++;
-        if(shots_fired < shots_before_charge)
+        if(shots_fired < fly_data.ShotsBeforeCharge)
         {
             return;
         }
@@ -235,7 +233,7 @@ public class EnemyFlyFSM : EnemyFSM
     void UpdateChargePrepare()
     {
         phase_time += Time.deltaTime;
-        if(phase_time < charge_prepare_time)
+        if(phase_time < fly_data.ChargePrepareTime)
         {
             return;
         }
@@ -259,7 +257,7 @@ public class EnemyFlyFSM : EnemyFSM
     void UpdateRecovery(bool can_see_player)
     {
         phase_time += Time.deltaTime;
-        if(phase_time < recovery_time)
+        if(phase_time < fly_data.RecoveryTime)
         {
             return;
         }
@@ -276,6 +274,7 @@ public class EnemyFlyFSM : EnemyFSM
 
     void MoveAlongPatrolPoints()
     {
+        Vector2[] patrol_point_offsets = fly_data.PatrolPointOffsets;
         if(patrol_point_offsets == null || patrol_point_offsets.Length == 0 || is_waiting_at_patrol_point)
         {
             StopMovement();
@@ -284,7 +283,7 @@ public class EnemyFlyFSM : EnemyFSM
 
         Vector2 target_position = patrol_origin + patrol_point_offsets[patrol_index];
         Vector2 difference = target_position - rb.position;
-        if(difference.sqrMagnitude <= patrol_reach_distance * patrol_reach_distance)
+        if(difference.sqrMagnitude <= fly_data.PatrolReachDistance * fly_data.PatrolReachDistance)
         {
             rb.MovePosition(target_position);
             StopMovement();
@@ -298,20 +297,20 @@ public class EnemyFlyFSM : EnemyFSM
             enemyAnimManager.SetFacingDirection(difference.x > 0f);
         }
 
-        Vector2 next_position = Vector2.MoveTowards(rb.position, target_position, fly_patrol_speed * Time.fixedDeltaTime);
+        Vector2 next_position = Vector2.MoveTowards(rb.position, target_position, fly_data.FlyPatrolSpeed * Time.fixedDeltaTime);
         rb.MovePosition(next_position);
     }
 
     void MoveDuringCharge()
     {
         phase_time += Time.fixedDeltaTime;
-        if(phase_time >= charge_duration)
+        if(phase_time >= fly_data.ChargeDuration)
         {
             BeginRecovery();
             return;
         }
 
-        rb.MovePosition(rb.position + charge_direction * charge_speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + charge_direction * fly_data.ChargeSpeed * Time.fixedDeltaTime);
     }
 
     void MoveDuringShooting()
@@ -328,13 +327,13 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         Vector2 difference = shooting_move_target - rb.position;
-        if(difference.sqrMagnitude <= patrol_reach_distance * patrol_reach_distance)
+        if(difference.sqrMagnitude <= fly_data.PatrolReachDistance * fly_data.PatrolReachDistance)
         {
             SelectRandomShootingTarget();
             difference = shooting_move_target - rb.position;
         }
 
-        float shooting_move_speed = fly_patrol_speed * 0.5f;
+        float shooting_move_speed = fly_data.FlyPatrolSpeed * 0.5f;
         Vector2 next_position = Vector2.MoveTowards(
             rb.position,
             shooting_move_target,
@@ -344,6 +343,7 @@ public class EnemyFlyFSM : EnemyFSM
 
     void SelectRandomShootingTarget()
     {
+        Vector2[] patrol_point_offsets = fly_data.PatrolPointOffsets;
         if(patrol_point_offsets == null || patrol_point_offsets.Length == 0)
         {
             has_shooting_move_target = false;
@@ -372,6 +372,8 @@ public class EnemyFlyFSM : EnemyFSM
 
     bool FireChaserBullet()
     {
+        GameObject chaser_bullet_prefab = fly_data.ChaserBulletPrefab;
+        Transform bullet_spawn_point = fly_data.BulletSpawnPoint;
         if(chaser_bullet_prefab == null || bullet_spawn_point == null)
         {
             Debug.LogWarning("EnemyFlyFSM needs a Chaser Bullet Prefab and Bullet Spawn Point.", this);
@@ -387,12 +389,13 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         enemyAnimManager.PlayAttack();
-        bullet_controller.Init(player, bullet_damage);
+        bullet_controller.Init(player, fly_data.BulletDamage);
         return true;
     }
 
     void UpdateBulletSpawnDirection(bool face_right)
     {
+        Transform bullet_spawn_point = fly_data.BulletSpawnPoint;
         if(bullet_spawn_point == null)
         {
             return;
@@ -431,7 +434,7 @@ public class EnemyFlyFSM : EnemyFSM
 
     Vector2 GetSightOrigin()
     {
-        return sight_origin != null ? sight_origin.position : transform.position;
+        return fly_data.SightOrigin != null ? fly_data.SightOrigin.position : transform.position;
     }
 
     Vector2 GetPlayerCenter()
@@ -482,7 +485,7 @@ public class EnemyFlyFSM : EnemyFSM
         }
 
         bool hit_player = collision.collider.CompareTag("Player");
-        bool hit_stop_layer = (charge_stop_layers.value & (1 << collision.gameObject.layer)) != 0;
+        bool hit_stop_layer = (fly_data.ChargeStopLayers.value & (1 << collision.gameObject.layer)) != 0;
         if(hit_player || hit_stop_layer)
         {
             BeginRecovery();
@@ -491,24 +494,30 @@ public class EnemyFlyFSM : EnemyFSM
 
     void OnDrawGizmosSelected()
     {
-        Vector2 origin = sight_origin != null ? sight_origin.position : transform.position;
+        EnemyFlyData draw_data = GetComponent<EnemyFlyData>();
+        if(draw_data == null)
+        {
+            return;
+        }
+
+        Vector2 origin = draw_data.SightOrigin != null ? draw_data.SightOrigin.position : transform.position;
         EnemyAnimManager anim_manager = GetComponent<EnemyAnimManager>();
         Vector2 forward = anim_manager != null && anim_manager.is_face_right ? Vector2.right : Vector2.left;
-        Vector2 left_edge = Quaternion.Euler(0f, 0f, sight_angle * 0.5f) * forward;
-        Vector2 right_edge = Quaternion.Euler(0f, 0f, -sight_angle * 0.5f) * forward;
+        Vector2 left_edge = Quaternion.Euler(0f, 0f, draw_data.SightAngle * 0.5f) * forward;
+        Vector2 right_edge = Quaternion.Euler(0f, 0f, -draw_data.SightAngle * 0.5f) * forward;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(origin, sight_distance);
-        Gizmos.DrawLine(origin, origin + left_edge * sight_distance);
-        Gizmos.DrawLine(origin, origin + right_edge * sight_distance);
+        Gizmos.DrawWireSphere(origin, draw_data.SightDistance);
+        Gizmos.DrawLine(origin, origin + left_edge * draw_data.SightDistance);
+        Gizmos.DrawLine(origin, origin + right_edge * draw_data.SightDistance);
 
         const int segment_count = 16;
-        Vector2 previous_point = origin + right_edge * sight_distance;
+        Vector2 previous_point = origin + right_edge * draw_data.SightDistance;
         for(int segment = 1; segment <= segment_count; segment++)
         {
-            float angle = Mathf.Lerp(-sight_angle * 0.5f, sight_angle * 0.5f, segment / (float)segment_count);
+            float angle = Mathf.Lerp(-draw_data.SightAngle * 0.5f, draw_data.SightAngle * 0.5f, segment / (float)segment_count);
             Vector2 direction = Quaternion.Euler(0f, 0f, angle) * forward;
-            Vector2 current_point = origin + direction * sight_distance;
+            Vector2 current_point = origin + direction * draw_data.SightDistance;
             Gizmos.DrawLine(previous_point, current_point);
             previous_point = current_point;
         }

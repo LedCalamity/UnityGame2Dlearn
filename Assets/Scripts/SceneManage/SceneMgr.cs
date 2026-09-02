@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class SceneMgr : MonoBehaviour
 {
     public static SceneMgr Instance;
+    [SerializeField] string bootstrap_scene_name = "GameBootTrap";
+
+    string selected_level;
+
     void Awake()
     {
         if (!Instance)
@@ -14,6 +18,18 @@ public class SceneMgr : MonoBehaviour
         }
         else Destroy(gameObject);
     }
+
+    public void StartGame(string level_name)
+    {
+        selected_level = level_name;
+        LoadScene(bootstrap_scene_name);
+    }
+
+    public void LoadSelectedLevel()
+    {
+        LoadScene(selected_level);
+    }
+
     public void LoadScene(string LevelName)
     {
         StartCoroutine(LoadSceneCoroutine(LevelName));
