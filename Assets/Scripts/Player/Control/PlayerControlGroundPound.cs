@@ -27,6 +27,11 @@ public class PlayerControlGroundPound : MonoBehaviour
     public Vector2 HitCenter => playerCollider.bounds.center;
     public Vector2 HitSize => playerCollider.bounds.size;
 
+    public void SetUnlocked(bool unlocked)
+    {
+        is_unlocked = unlocked;
+    }
+
     void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -8,6 +8,9 @@ public class SceneMgr : MonoBehaviour
     [SerializeField] string bootstrap_scene_name = "GameBootTrap";
 
     string selected_level;
+    int selected_level_index;
+
+    public int SelectedLevelIndex => selected_level_index;
 
     void Awake()
     {
@@ -19,9 +22,10 @@ public class SceneMgr : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void StartGame(string level_name)
+    public void StartGame(string level_name, int level_index)
     {
         selected_level = level_name;
+        selected_level_index = level_index;
         LoadScene(bootstrap_scene_name);
     }
 

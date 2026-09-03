@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 333216005}
   m_Layer: 0
   m_Name: DownPoundNowHint
-  m_TagString: Untagged
+  m_TagString: Detectors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109852,7 +109852,7 @@ GameObject:
   - component: {fileID: 683966306}
   m_Layer: 0
   m_Name: DownpoundHint
-  m_TagString: Untagged
+  m_TagString: Detectors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110557,7 +110557,7 @@ GameObject:
   - component: {fileID: 1106265584}
   m_Layer: 0
   m_Name: DetectL1ToL2
-  m_TagString: Untagged
+  m_TagString: Detectors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

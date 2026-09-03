@@ -19,13 +19,14 @@ public class UnlockDownpound : MonoBehaviour
             return;
         }
 
-        PlayerControlGroundPound groundPound = collision.collider.GetComponent<PlayerControlGroundPound>();
-        if(groundPound == null)
+        PlayerControlGroundPound ground_pound = collision.collider.GetComponent<PlayerControlGroundPound>();
+        if(ground_pound == null)
         {
             return;
         }
 
-        groundPound.is_unlocked = true;
+        SaveManager.Instance.UnlockGroundPound();
+        ground_pound.SetUnlocked(true);
         mes?.UnlockDownpound();
         Destroy(gameObject);
     }

@@ -11,6 +11,10 @@ public class GameBootstrap : MonoBehaviour
     {
         GameObject player = Instantiate(player_prefab);
         virtual_camera.Follow = player.transform;
+
+        PlayerControlGroundPound ground_pound = player.GetComponent<PlayerControlGroundPound>();
+        ground_pound.SetUnlocked(SaveManager.Instance.GroundPoundUnlocked);
+
         yield return null;
         SceneMgr.Instance.LoadSelectedLevel();
     }
