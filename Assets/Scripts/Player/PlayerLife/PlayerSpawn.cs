@@ -19,6 +19,9 @@ public class PlayerSpawn : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        PlayerControlGravityReverse gravity_reverse = GetComponent<PlayerControlGravityReverse>();
+        if(gravity_reverse != null) gravity_reverse.ResetGravityState();
+
         if (destroyScenes.Contains(scene.name))
         {   
             Destroy(gameObject);

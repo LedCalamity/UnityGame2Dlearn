@@ -13,6 +13,9 @@ public class SaveManager : MonoBehaviour  //when permanant change occurs, here t
 
     public int HighestUnlockedLevel => save_data.highest_unlocked_level;
     public bool GroundPoundUnlocked => save_data.ground_pound_unlocked;
+    public bool GravityReverseUnlocked => save_data.gravity_reverse_unlocked;
+    public int MaxHP => save_data.max_hp;
+    public int BulletDamage => save_data.bullet_damage;
 
     void Awake()
     {
@@ -52,6 +55,48 @@ public class SaveManager : MonoBehaviour  //when permanant change occurs, here t
         Save();
     }
 
+    public void UnlockGravityReverse()
+    {
+        if(save_data.gravity_reverse_unlocked)
+        {
+            return;
+        }
+
+        save_data.gravity_reverse_unlocked = true;
+        Save();
+    }
+
+    public bool IsPermanentPickupCollected(string pickup_id)
+    {
+        return save_data.collected_permanent_pickup_ids.Contains(pickup_id);
+    }
+
+    public bool TryCollectMaxHPUpgrade(string pickup_id, int amount)
+    {
+        if(string.IsNullOrWhiteSpace(pickup_id) || amount <= 0 || IsPermanentPickupCollected(pickup_id))
+        {
+            return false;
+        }
+
+        save_data.collected_permanent_pickup_ids.Add(pickup_id);
+        save_data.max_hp += amount;
+        Save();
+        return true;
+    }
+
+    public bool TryCollectBulletDamageUpgrade(string pickup_id, int amount)
+    {
+        if(string.IsNullOrWhiteSpace(pickup_id) || amount <= 0 || IsPermanentPickupCollected(pickup_id))
+        {
+            return false;
+        }
+
+        save_data.collected_permanent_pickup_ids.Add(pickup_id);
+        save_data.bullet_damage += amount;
+        Save();
+        return true;
+    }
+
     public void Save()
     {
         string json = JsonUtility.ToJson(save_data, true);
@@ -72,6 +117,7 @@ public class SaveManager : MonoBehaviour  //when permanant change occurs, here t
         if(save_data == null)
         {
             save_data = new GameSaveData();
+            return;
         }
     }
 }

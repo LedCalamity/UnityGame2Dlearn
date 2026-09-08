@@ -22,6 +22,13 @@ public class TriggerDropDeath : MonoBehaviour
 
     private void EnemyDieDrop(Collider2D enemy_collider)
     {
+        EnemyHP enemy_hp = enemy_collider.GetComponentInParent<EnemyHP>();
+        if(enemy_hp != null)
+        {
+            enemy_hp.Die();
+            return;
+        }
+
         Rigidbody2D enemy_rb = enemy_collider.attachedRigidbody;
 
         if(enemy_rb != null)

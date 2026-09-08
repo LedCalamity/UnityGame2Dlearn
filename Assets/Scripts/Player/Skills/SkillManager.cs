@@ -97,7 +97,7 @@ public class SkillManager : MonoBehaviour
         if (!PlayerMana.Instance.DeductMana(data.manaCost)) yield break;
 
         // Effect
-        EffectManager.Instance?.GenerateGroundPoundEffect(controller.transform.position);
+        EffectManager.Instance?.GenerateGroundPoundEffect(controller.HitCenter);
         // Audio
         AudioManager.Instance?.AudioPlay(2, "GroundPound_sef", false);
         // Logic

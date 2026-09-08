@@ -8,9 +8,11 @@ public class PlayerControlFireAOE : MonoBehaviour
     float cur_time = 0f, cd = 5f;
     public Image skill_cd;
     InputManager input_manager;
+    BoxCollider2D player_collider;
     private void Awake()
     {
         input_manager = GetComponent<InputManager>();
+        player_collider = GetComponent<BoxCollider2D>();
         input_manager.OnFireAOE += Skill_FireAOE;
     }
     private void Start()
@@ -29,7 +31,7 @@ public class PlayerControlFireAOE : MonoBehaviour
         if (!is_fire_aoe && PlayerMana.Instance.IsAbundant(6))
         {
             is_fire_aoe = true;
-            SkillManager.Instance.CallSkillFireAOETask(transform.position + new Vector3(0f, 0.7f, 0));
+            SkillManager.Instance.CallSkillFireAOETask(player_collider.bounds.center);
         }
     }
     private void Update()

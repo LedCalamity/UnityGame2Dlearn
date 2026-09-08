@@ -36,16 +36,22 @@ public class PlayerControlFire : MonoBehaviour
         {
             if(!PlayerMana.Instance.DeductMana(BulletData.Instance.getBulletData("Bullet").mana)) return;
             AudioManager.Instance.AudioPlay(2, "Fire_sef", false);
-            GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, coll.size.y, 0), Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, GetFirePosition(), Quaternion.identity);
             bullet.GetComponent<BulletController>().Init(move_inss.is_player_right);
         }
         else
         {
             if(!PlayerMana.Instance.DeductMana(BulletData.Instance.getBulletData("ChaserBullet").mana)) return;
             AudioManager.Instance.AudioPlay(2, "Fire_sef", false);
-            GameObject c_bullet = Instantiate(chaserBulletPrefab, transform.position + new Vector3(0, coll.size.y, 0), Quaternion.identity);
+            GameObject c_bullet = Instantiate(chaserBulletPrefab, GetFirePosition(), Quaternion.identity);
             c_bullet.GetComponent<ChaserBulletController>().Init(move_inss.is_player_right);
         }
+    }
+    Vector3 GetFirePosition()
+    {
+        Vector3 fire_position = coll.bounds.center;
+        fire_position.x += coll.bounds.extents.x * (move_inss.is_player_right ? 1f : -1f);
+        return fire_position;
     }
     void CheckFiring()
     {

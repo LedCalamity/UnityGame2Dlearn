@@ -89,6 +89,14 @@ public class Playerhp : MonoBehaviour
         UpdateBar();
         return true;
     }
+
+    public void SetMaxHealth(int max_health, bool restore_full_health)
+    {
+        max_player_hp = Mathf.Max(1, max_health);
+        cur_player_hp = restore_full_health ? max_player_hp : Mathf.Min(cur_player_hp, max_player_hp);
+        UpdateBar();
+    }
+
     public void ResetHP()
     {
         cur_player_hp = max_player_hp;

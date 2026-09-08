@@ -163,6 +163,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GravityReverse"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9846d79-129f-4a14-a715-a01d4fddbe2c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -297,6 +306,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""GroundPound"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a846f67b-d2c9-4368-97f2-2b62a287f18c"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GravityReverse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -313,6 +333,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_NormalPlayer_Skill4DirFire = m_NormalPlayer.FindAction("Skill4DirFire", throwIfNotFound: true);
         m_NormalPlayer_SkillFireAOE = m_NormalPlayer.FindAction("SkillFireAOE", throwIfNotFound: true);
         m_NormalPlayer_GroundPound = m_NormalPlayer.FindAction("GroundPound", throwIfNotFound: true);
+        m_NormalPlayer_GravityReverse = m_NormalPlayer.FindAction("GravityReverse", throwIfNotFound: true);
     }
 
     ~@PlayerActions()
@@ -401,6 +422,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_NormalPlayer_Skill4DirFire;
     private readonly InputAction m_NormalPlayer_SkillFireAOE;
     private readonly InputAction m_NormalPlayer_GroundPound;
+    private readonly InputAction m_NormalPlayer_GravityReverse;
     /// <summary>
     /// Provides access to input actions defined in input action map "NormalPlayer".
     /// </summary>
@@ -444,6 +466,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "NormalPlayer/GroundPound".
         /// </summary>
         public InputAction @GroundPound => m_Wrapper.m_NormalPlayer_GroundPound;
+        /// <summary>
+        /// Provides access to the underlying input action "NormalPlayer/GravityReverse".
+        /// </summary>
+        public InputAction @GravityReverse => m_Wrapper.m_NormalPlayer_GravityReverse;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -494,6 +520,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @GroundPound.started += instance.OnGroundPound;
             @GroundPound.performed += instance.OnGroundPound;
             @GroundPound.canceled += instance.OnGroundPound;
+            @GravityReverse.started += instance.OnGravityReverse;
+            @GravityReverse.performed += instance.OnGravityReverse;
+            @GravityReverse.canceled += instance.OnGravityReverse;
         }
 
         /// <summary>
@@ -529,6 +558,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @GroundPound.started -= instance.OnGroundPound;
             @GroundPound.performed -= instance.OnGroundPound;
             @GroundPound.canceled -= instance.OnGroundPound;
+            @GravityReverse.started -= instance.OnGravityReverse;
+            @GravityReverse.performed -= instance.OnGravityReverse;
+            @GravityReverse.canceled -= instance.OnGravityReverse;
         }
 
         /// <summary>
@@ -625,5 +657,12 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGroundPound(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GravityReverse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGravityReverse(InputAction.CallbackContext context);
     }
 }

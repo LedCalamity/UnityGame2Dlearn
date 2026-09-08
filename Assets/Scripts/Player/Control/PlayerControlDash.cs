@@ -11,11 +11,13 @@ public class PlayerControlDash : MonoBehaviour
     PlayerControlMove move_input;
     Vector2 dash_end_pos, dash_start_pos;
     InputManager input_manager;
+    PlayerControlGravityReverse gravity_reverse;
     private void OnEnable()
     {
         input_manager = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody2D>();
         move_input = GetComponent<PlayerControlMove>();
+        gravity_reverse = GetComponent<PlayerControlGravityReverse>();
         input_manager.OnDash += Dash;
     }
     private void OnDisable()
@@ -63,7 +65,8 @@ public class PlayerControlDash : MonoBehaviour
         is_dashing = false;
         is_break = true;
         cur_break = 0f;
-        rb.gravityScale = 1f;
+        if(gravity_reverse != null) gravity_reverse.RestoreGravity();
+        else rb.gravityScale = 1f;
         if(move_input!=null) move_input.enabled = true;
     }
 }

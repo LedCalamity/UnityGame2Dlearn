@@ -14,7 +14,9 @@ public class InputManager : MonoBehaviour
     public event Action<Vector2> OnMove;
     public event Action On4DirFire;
     public event Action OnGroundPound;
+    public event Action OnGravityReverse;
     InputAction groundPoundAction;
+    InputAction gravityReverseAction;
     void OnEnable()
     {
         // subscribe all event-subscribed functions to input, so input -> event -> function(logic)
@@ -30,6 +32,8 @@ public class InputManager : MonoBehaviour
         inputActions.NormalPlayer.Skill4DirFire.performed += Handle4DirFire;
         groundPoundAction = inputActions.NormalPlayer.Get().FindAction("GroundPound");
         if (groundPoundAction != null) groundPoundAction.performed += HandleGroundPound;
+        gravityReverseAction = inputActions.NormalPlayer.Get().FindAction("GravityReverse");
+        if (gravityReverseAction != null) gravityReverseAction.performed += HandleGravityReverse;
     }
     private void OnDisable()
     {
@@ -43,6 +47,7 @@ public class InputManager : MonoBehaviour
         inputActions.NormalPlayer.Move.canceled -= HandleMove;
         inputActions.NormalPlayer.Skill4DirFire.performed -= Handle4DirFire;
         if (groundPoundAction != null) groundPoundAction.performed -= HandleGroundPound;
+        if (gravityReverseAction != null) gravityReverseAction.performed -= HandleGravityReverse;
     }
     void HandleFire(InputAction.CallbackContext ctx)
     {
@@ -75,5 +80,9 @@ public class InputManager : MonoBehaviour
     void HandleGroundPound(InputAction.CallbackContext ctx)
     {
         OnGroundPound?.Invoke();
+    }
+    void HandleGravityReverse(InputAction.CallbackContext ctx)
+    {
+        OnGravityReverse?.Invoke();
     }
 }

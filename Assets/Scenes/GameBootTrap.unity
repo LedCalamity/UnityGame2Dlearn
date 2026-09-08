@@ -127,9 +127,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 95236270106536294, guid: ab166570f9e5dfc48a18f773759449da, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3722701928820704563, guid: ab166570f9e5dfc48a18f773759449da, type: 3}
       propertyPath: m_Name
       value: Virtual Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302741166489098420, guid: ab166570f9e5dfc48a18f773759449da, type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088247430797369980, guid: ab166570f9e5dfc48a18f773759449da, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9088247430797369980, guid: ab166570f9e5dfc48a18f773759449da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -241,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8663176351128110225, guid: 75705403ec1dac8449e2f3a10a77f4e7, type: 3}
       propertyPath: orthographic size
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

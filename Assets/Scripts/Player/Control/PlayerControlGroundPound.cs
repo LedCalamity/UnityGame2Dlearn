@@ -6,6 +6,7 @@ public class PlayerControlGroundPound : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D playerCollider;
     PlayerControlMove moveControl;
+    PlayerControlGravityReverse gravityReverse;
     InputManager inputManager;
 
     GroundPoundSkillData activeData;
@@ -37,6 +38,7 @@ public class PlayerControlGroundPound : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         moveControl = GetComponent<PlayerControlMove>();
+        gravityReverse = GetComponent<PlayerControlGravityReverse>();
         inputManager = GetComponent<InputManager>();
         enemyLayer = LayerMask.NameToLayer("EnemyLayer");
         inputManager.OnGroundPound += TryStartGroundPound;
@@ -103,7 +105,7 @@ public class PlayerControlGroundPound : MonoBehaviour
             return;
         }
 
-        rb.linearVelocity = new Vector2(0f, -activeData.speed);
+        rb.linearVelocity = GravityDirection * activeData.speed;
 
         if (Time.time - startTime >= activeData.maxDuration)
         {
@@ -120,9 +122,11 @@ public class PlayerControlGroundPound : MonoBehaviour
     void CheckGroundImpact()
     {
         Bounds bounds = playerCollider.bounds;
-        Vector2 origin = new Vector2(bounds.center.x, bounds.min.y + 0.02f);
+        Vector2 gravityDirection = GravityDirection;
+        float surfaceY = gravityDirection.y < 0f ? bounds.min.y : bounds.max.y;
+        Vector2 origin = new Vector2(bounds.center.x, surfaceY - gravityDirection.y * 0.02f);
         float distance = activeData.speed * Time.fixedDeltaTime + 0.05f;
-        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(bounds.size.x * 0.8f, 0.02f), 0f, Vector2.down, distance, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(bounds.size.x * 0.8f, 0.02f), 0f, gravityDirection, distance, LayerMask.GetMask("Ground"));
 
         if (!hit.collider) //if not hit ground no need analyze ground
         {
@@ -132,7 +136,7 @@ public class PlayerControlGroundPound : MonoBehaviour
         Tilemap tilemap = hit.collider.GetComponent<Tilemap>();
         if (canBreakTiles && tilemap != null)
         {
-            Vector3Int cell = tilemap.WorldToCell(hit.point + Vector2.down * 0.01f);
+            Vector3Int cell = tilemap.WorldToCell(hit.point + gravityDirection * 0.01f);
             if (tilemap.GetTile(cell) is BreakableRuleTile)
             {
                 breakTilemap = tilemap;
@@ -233,8 +237,12 @@ public class PlayerControlGroundPound : MonoBehaviour
     float GetDistanceToGround()
     {
         Bounds bounds = playerCollider.bounds;
-        Vector2 origin = new Vector2(bounds.center.x, bounds.min.y + 0.02f);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
+        Vector2 gravityDirection = GravityDirection;
+        float surfaceY = gravityDirection.y < 0f ? bounds.min.y : bounds.max.y;
+        Vector2 origin = new Vector2(bounds.center.x, surfaceY - gravityDirection.y * 0.02f);
+        RaycastHit2D hit = Physics2D.Raycast(origin, gravityDirection, Mathf.Infinity, LayerMask.GetMask("Ground"));
         return hit.collider ? hit.distance : 0f;
     }
+
+    Vector2 GravityDirection => gravityReverse != null ? gravityReverse.GravityDirection : Vector2.down;
 }

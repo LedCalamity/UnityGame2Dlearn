@@ -4,7 +4,11 @@ public class EnemyHP : MonoBehaviour
 {
     EnemyData enemy_data;
     int cur_hp = 0;
+    bool is_dead;
     public GameObject hp_bar;
+
+    public event System.Action Died;
+
     void Awake()
     {
         enemy_data = GetComponent<EnemyData>();
@@ -34,12 +38,26 @@ public class EnemyHP : MonoBehaviour
     }
     void CheckDeath()
     {
-        if (cur_hp <= 0)
+        if(cur_hp > 0)
         {
-            //EffectManager.Instance.GenerateDeathSlowMotion(0.3f);
-            AudioManager.Instance.AudioPlay(1, "Death_sef", false);
-            Destroy(gameObject);
+            return;
         }
+
+        Die();
+    }
+
+    public void Die()
+    {
+        if(is_dead)
+        {
+            return;
+        }
+
+        is_dead = true;
+        Died?.Invoke();
+        //EffectManager.Instance.GenerateDeathSlowMotion(0.3f);
+        AudioManager.Instance.AudioPlay(1, "Death_sef", false);
+        Destroy(gameObject);
     }
     void UpdateRender()
     {
@@ -49,7 +67,7 @@ public class EnemyHP : MonoBehaviour
     }
     public void DeductHealth(int hp, bool generateBloodEffect = true)
     {
-        if(hp <= 0)
+        if(hp <= 0 || is_dead)
         {
             return;
         }

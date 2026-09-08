@@ -9,9 +9,11 @@ public class PlayerSkill4DirFire : MonoBehaviour
     float cur_time = 0f, cd = 3f;
     public Image skill_cd;
     InputManager input_manager;
+    BoxCollider2D player_collider;
     private void Awake()
     {
         input_manager = GetComponent<InputManager>();
+        player_collider = GetComponent<BoxCollider2D>();
         input_manager.On4DirFire += Skill_4Dir_Fire;
     }
     private void Start()
@@ -27,7 +29,7 @@ public class PlayerSkill4DirFire : MonoBehaviour
         if(!is_4dir_fire && PlayerMana.Instance.IsAbundant(4))
         {
             is_4dir_fire = true;
-            SkillManager.Instance.CallSkill4DirFireTask(transform.position + new Vector3(0, 0.5f, 0));
+            SkillManager.Instance.CallSkill4DirFireTask(player_collider.bounds.center);
         }
     }
     private void Update()

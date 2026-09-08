@@ -21,16 +21,18 @@ public class BulletData : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            bulletdata.Add("Bullet", new Bullets(1, 2));
+            bulletdata.Add("ChaserBullet", new Bullets(2, 1));
         }
         else Destroy(gameObject);
-    }
-    private void Start()
-    {
-        bulletdata.Add("Bullet", new Bullets(1, 2));
-        bulletdata.Add("ChaserBullet", new Bullets(2, 1));
     }
     public Bullets getBulletData(string l_name)
     {
         return bulletdata[l_name];
+    }
+    public void SetBulletDamage(string bullet_name, int damage)
+    {
+        Bullets bullet = bulletdata[bullet_name];
+        bulletdata[bullet_name] = new Bullets(bullet.mana, Mathf.Max(0, damage));
     }
 }

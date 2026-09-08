@@ -6,6 +6,8 @@ public class PlayerRespawn : MonoBehaviour
     {
         GameObject respawnpt = GameObject.FindGameObjectWithTag("SpawnPoint");
         transform.position = respawnpt.transform.position;
+        PlayerControlGravityReverse gravity_reverse = GetComponent<PlayerControlGravityReverse>();
+        if(gravity_reverse != null) gravity_reverse.ResetGravityState();
         PlayerMana.Instance.ResetMana();
         Playerhp.Instance.ResetHP();
     }
