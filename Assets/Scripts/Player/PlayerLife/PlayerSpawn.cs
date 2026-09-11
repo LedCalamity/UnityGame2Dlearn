@@ -32,6 +32,8 @@ public class PlayerSpawn : MonoBehaviour
             gameObject.GetComponent<PlayerControlDash>().is_unlocked = false;
         }
         GameObject spawnpt = GameObject.FindGameObjectWithTag("SpawnPoint"); //Now it only applies to single spawning point, will improve after learning
-        transform.position = spawnpt.transform.position; //only need to create spwan point prefab each scene
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.position = spawnpt.transform.position;
+        rb.linearVelocity = Vector2.zero;
     }
 }

@@ -38,6 +38,22 @@ public class TextMessageShow : MonoBehaviour
         is_showing = true;
         is_consistent = false;
     }
+    public void UnlockGravityReverse()
+    {
+        Mestext.text = "Unlock Gravity Reversal";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
+    public void CollectGem(int collected, int total)
+    {
+        Mestext.text = collected == total
+            ? "All gems collected! Path opened."
+            : $"Gem collected: {collected} / {total}";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
     public void ResetText()  //total reset
     {
         Mestext.text = "";
@@ -132,6 +148,16 @@ public class TextMessageShow : MonoBehaviour
         is_consistent = true;
     }
     public void ExitDownpoundNowHint()
+    {
+        ResetText();
+    }
+    public void EnterGravityReverseHint()
+    {
+        Mestext.text = "Press G to reverse the gravity for high ground";
+        is_showing=true;
+        is_consistent=true;
+    }
+    public void ExitGravityReverseHint()
     {
         ResetText();
     }

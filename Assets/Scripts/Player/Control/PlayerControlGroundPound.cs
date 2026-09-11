@@ -84,6 +84,14 @@ public class PlayerControlGroundPound : MonoBehaviour
         isWaitingForTileBreak = false;
         IsGroundPounding = true;
 
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = 0f;
+        if(Vector2.Dot(velocity, GravityDirection) < 0f)
+        {
+            velocity.y = 0f;
+        }
+        rb.linearVelocity = velocity;
+
         if (moveControl != null)
         {
             moveControl.enabled = false; //nice addition
@@ -105,7 +113,7 @@ public class PlayerControlGroundPound : MonoBehaviour
             return;
         }
 
-        rb.linearVelocity = GravityDirection * activeData.speed;
+        rb.linearVelocity += GravityDirection * activeData.acceleration * Time.fixedDeltaTime;
 
         if (Time.time - startTime >= activeData.maxDuration)
         {
@@ -125,7 +133,8 @@ public class PlayerControlGroundPound : MonoBehaviour
         Vector2 gravityDirection = GravityDirection;
         float surfaceY = gravityDirection.y < 0f ? bounds.min.y : bounds.max.y;
         Vector2 origin = new Vector2(bounds.center.x, surfaceY - gravityDirection.y * 0.02f);
-        float distance = activeData.speed * Time.fixedDeltaTime + 0.05f;
+        float poundSpeed = Mathf.Max(0f, Vector2.Dot(rb.linearVelocity, gravityDirection));
+        float distance = poundSpeed * Time.fixedDeltaTime + 0.05f;
         RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(bounds.size.x * 0.8f, 0.02f), 0f, gravityDirection, distance, LayerMask.GetMask("Ground"));
 
         if (!hit.collider) //if not hit ground no need analyze ground

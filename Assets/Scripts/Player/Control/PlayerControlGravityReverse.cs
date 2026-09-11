@@ -58,6 +58,7 @@ public class PlayerControlGravityReverse : MonoBehaviour
     {
         can_reverse_here = false;
         SetReversed(false);
+        RestoreGravity();
     }
 
     public void RestoreGravity()

@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6184039701201184001}
   - component: {fileID: 6184039701201184002}
   - component: {fileID: 6184039701201184003}
+  - component: {fileID: 7307936619866645694}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -193,7 +194,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineConfiner2D
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 0.4
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d9e0f1a2b3c44d5a6e7f8091a2b3c4d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraBoundaryBinder
 --- !u!114 &6184039701201184003
 MonoBehaviour:
@@ -221,8 +222,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc3d643e3e2c80d4ab52d92f4dbdf145, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraDestroy
   destroyScenesCamera:
   - DeathScene
   - MainMenu
+--- !u!114 &7307936619866645694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722701928820704563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a27c8328fd44edcb4a2476b48890f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFocusController

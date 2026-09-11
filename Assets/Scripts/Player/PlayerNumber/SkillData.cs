@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class SkillData
@@ -13,7 +14,8 @@ public class GroundPoundSkillData
     public int damage;
     public int maxConnectedBreakCount;
     public float invincibleDuration;
-    public float speed;
+    [FormerlySerializedAs("speed")]
+    public float acceleration;
     public float maxDuration;
     public float minimumBreakHeight;
 
@@ -22,7 +24,7 @@ public class GroundPoundSkillData
         damage > 0 &&
         maxConnectedBreakCount > 0 &&
         invincibleDuration > 0f &&
-        speed > 0f &&
+        acceleration > 0f &&
         maxDuration > 0f &&
         minimumBreakHeight > 0f;
 }

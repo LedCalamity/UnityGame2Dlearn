@@ -25,6 +25,10 @@ public class UnlockGravityReverse : MonoBehaviour
 
         SaveManager.Instance.UnlockGravityReverse();
         gravity_reverse.SetUnlocked(true);
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.MessageText?.UnlockGravityReverse();
+        }
         Destroy(gameObject);
     }
 }
