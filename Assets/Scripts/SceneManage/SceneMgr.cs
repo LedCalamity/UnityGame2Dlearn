@@ -9,6 +9,7 @@ public class SceneMgr : MonoBehaviour
 
     string selected_level;
     int selected_level_index;
+    string pending_menu_panel;
 
     public int SelectedLevelIndex => selected_level_index;
 
@@ -36,7 +37,21 @@ public class SceneMgr : MonoBehaviour
 
     public void LoadScene(string LevelName)
     {
+        pending_menu_panel = null;
         StartCoroutine(LoadSceneCoroutine(LevelName));
+    }
+
+    public void LoadMainMenu(string panel_name)
+    {
+        pending_menu_panel = panel_name;
+        StartCoroutine(LoadSceneCoroutine("MainMenu"));
+    }
+
+    public string TakeMainMenuPanel()
+    {
+        string panel_name = pending_menu_panel;
+        pending_menu_panel = null;
+        return panel_name;
     }
 
     IEnumerator LoadSceneCoroutine(string levelname)
