@@ -11,7 +11,12 @@ public class HPAdder : MonoBehaviour
             return;
         }
 
+        int previous_hp = Playerhp.Instance.CurrentHealth;
         Playerhp.Instance.RestoreHealth(hp_add_amount);
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.MessageText?.CollectHP(Playerhp.Instance.CurrentHealth - previous_hp);
+        }
         Destroy(gameObject);
     }
 }

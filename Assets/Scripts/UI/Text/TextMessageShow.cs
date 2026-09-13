@@ -54,6 +54,34 @@ public class TextMessageShow : MonoBehaviour
         is_showing = true;
         is_consistent = false;
     }
+    public void CollectHP(int amount)
+    {
+        Mestext.text = amount > 0 ? $"HP restored: +{amount}" : "HP already full.";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
+    public void CollectLife(int amount)
+    {
+        Mestext.text = amount > 0 ? $"Lives restored: +{amount}" : "Lives already full.";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
+    public void CollectMaxHP(int amount)
+    {
+        Mestext.text = $"Max HP +{amount}. HP fully restored.";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
+    public void CollectBulletDamage(int amount)
+    {
+        Mestext.text = $"Bullet damage +{amount}";
+        cur_time = 0f;
+        is_showing = true;
+        is_consistent = false;
+    }
     public void ResetText()  //total reset
     {
         Mestext.text = "";

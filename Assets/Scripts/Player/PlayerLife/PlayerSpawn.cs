@@ -27,6 +27,12 @@ public class PlayerSpawn : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        // Only numbered gameplay scenes (Level0, Level1, ...), not Bootstrap or menus.
+        if(!scene.name.StartsWith("Level") || !int.TryParse(scene.name.Substring(5), out int level_index) || level_index < 0)
+        {
+            return;
+        }
+
         if (scene.name == "Level1")
         {
             gameObject.GetComponent<PlayerControlDash>().is_unlocked = false;
@@ -35,5 +41,8 @@ public class PlayerSpawn : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.position = spawnpt.transform.position;
         rb.linearVelocity = Vector2.zero;
+        Playerhp.Instance.ResetHP();
+        PlayerMana.Instance.ResetMana();
+        GetComponent<PlayerDeath>().ResetLives();
     }
 }

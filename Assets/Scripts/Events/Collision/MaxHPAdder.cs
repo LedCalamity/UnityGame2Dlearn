@@ -26,6 +26,10 @@ public class MaxHPAdder : MonoBehaviour
         }
 
         Playerhp.Instance.SetMaxHealth(SaveManager.Instance.MaxHP, true);
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.MessageText?.CollectMaxHP(max_hp_add_amount);
+        }
         Destroy(gameObject);
     }
 }

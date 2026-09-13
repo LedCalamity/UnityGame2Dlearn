@@ -33,6 +33,12 @@ public class PlayerDeath : MonoBehaviour
         StartCoroutine(DieRoutine());
     }
 
+    public void ResetLives()
+    {
+        current_lives = max_lives;
+        RefreshLifeDisplay();
+    }
+
     public bool AddLife(int amount)
     {
         if(amount <= 0 || current_lives >= max_lives)

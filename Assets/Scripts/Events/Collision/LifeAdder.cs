@@ -17,7 +17,12 @@ public class LifeAdder : MonoBehaviour
             return;
         }
 
+        int previous_lives = player_death.CurrentLives;
         player_death.AddLife(life_add_amount);
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.MessageText?.CollectLife(player_death.CurrentLives - previous_lives);
+        }
         Destroy(gameObject);
     }
 }

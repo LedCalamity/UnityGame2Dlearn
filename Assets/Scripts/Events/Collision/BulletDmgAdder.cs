@@ -26,6 +26,10 @@ public class BulletDmgAdder : MonoBehaviour
         }
 
         BulletData.Instance.SetBulletDamage("Bullet", SaveManager.Instance.BulletDamage);
+        if(UIManager.Instance != null)
+        {
+            UIManager.Instance.MessageText?.CollectBulletDamage(bullet_damage_add_amount);
+        }
         Destroy(gameObject);
     }
 }
