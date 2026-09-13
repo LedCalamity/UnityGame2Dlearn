@@ -11,3 +11,6 @@ new update for 0.12
 - support inverted jumping, ground pound, collision, camera and skill origins
 - add persistent max-health and bullet-damage pickups
 - add enemy death events for destroying scene targets
+
+Updated 1.00
+- add level4
